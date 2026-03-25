@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>codeateJD — Jose Delpino | Developer & IT Solutions</title>
+<meta name="description" content="codeateJD — Freelance Web & App Developer. Soluciones digitales elegantes y a tu medida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">codeate<span class="gradient-text">JD</span></a>
+    <div class="nav-links">
+      <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
+      <a href="#process" data-es="Proceso" data-en="Process">Proceso</a>
+      <a href="#tech" data-es="Tecnologías" data-en="Tech Stack">Tecnologías</a>
+      <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
+      <button class="lang-toggle" id="langToggle" title="Switch language">EN</button>
+    </div>
+    <button class="nav-menu" id="navMenu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="hero">
+  <!-- Floating code snippets -->
+  <div class="code-float code-float-1" aria-hidden="true">
+    <pre><code><span class="kw">const</span> <span class="fn">buildApp</span> = <span class="kw">async</span> () => {
+  <span class="kw">const</span> design = <span class="kw">await</span> <span class="fn">createUI</span>();
+  <span class="kw">return</span> design.<span class="fn">deploy</span>();
+};</code></pre>
+  </div>
+  <div class="code-float code-float-2" aria-hidden="true">
+    <pre><code><span class="cm">// Flutter magic</span>
+<span class="kw">class</span> <span class="fn">MyApp</span> <span class="kw">extends</span> StatelessWidget {
+  @override
+  Widget <span class="fn">build</span>(context) =>
+    MaterialApp(home: <span class="fn">HomeScreen</span>());
+}</code></pre>
+  </div>
+  <div class="code-float code-float-3" aria-hidden="true">
+    <pre><code><span class="kw">server</span> {
+  listen <span class="num">443</span> ssl;
+  location / {
+    <span class="fn">proxy_pass</span> app:3000;
+  }
+}</code></pre>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <span class="badge-dot"></span>
+      <span data-es="Disponible para proyectos" data-en="Available for projects">Disponible para proyectos</span>
+    </div>
+    <div class="hero-logo-big reveal">
+      <span class="logo-codeate">codeate</span><span class="logo-jd">JD</span>
+    </div>
+    <div class="hero-typing reveal">
+      <span class="typing-prefix">&gt; </span>
+      <span class="typing-text" id="typingText"></span>
+      <span class="typing-cursor">|</span>
+    </div>
+    <p class="hero-desc reveal" data-es="Desarrollo web y apps elegantes, rápidas y a tu medida. Infraestructura sólida para tu negocio." data-en="Elegant, fast, custom web & app development. Solid infrastructure for your business.">
+      Desarrollo web y apps elegantes, rápidas y a tu medida. Infraestructura sólida para tu negocio.
+    </p>
+    <p class="hero-domain reveal">codeateJD.com</p>
+    <div class="hero-buttons reveal">
+      <a href="#contact" class="btn btn-primary" data-es="Hablemos de tu proyecto" data-en="Let's talk about your project">Hablemos de tu proyecto</a>
+      <a href="#services" class="btn btn-outline" data-es="Ver servicios" data-en="View services">Ver servicios</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-mouse">
+      <div class="scroll-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section class="section section-light" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag" data-es="Lo que hago" data-en="What I do">Lo que hago</span>
+      <h2 data-es="Servicios" data-en="Services">Servicios</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" style="--delay: 0.1s">
+        <div class="service-icon-wrap">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+        </div>
+        <h3 data-es="Desarrollo Web" data-en="Web Development">Desarrollo Web</h3>
+        <p data-es="Páginas y aplicaciones web modernas, responsivas y optimizadas. Desde landing pages hasta plataformas complejas." data-en="Modern, responsive, optimized web pages and applications. From landing pages to complex platforms.">Páginas y aplicaciones web modernas, responsivas y optimizadas. Desde landing pages hasta plataformas complejas.</p>
+        <div class="service-code">
+          <code><span class="kw">const</span> web = { design: <span class="str">'elegant'</span>, speed: <span class="str">'fast'</span> };</code>
+        </div>
+      </div>
+      <div class="service-card reveal" style="--delay: 0.2s">
+        <div class="service-icon-wrap">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+        </div>
+        <h3 data-es="Apps Móviles" data-en="Mobile Apps">Apps Móviles</h3>
+        <p data-es="Aplicaciones nativas y multiplataforma con Flutter. iOS y Android desde un solo código base." data-en="Native and cross-platform apps with Flutter. iOS and Android from a single codebase.">Aplicaciones nativas y multiplataforma con Flutter. iOS y Android desde un solo código base.</p>
+        <div class="service-code">
+          <code>flutter build <span class="str">--release</span> <span class="cm">// iOS + Android</span></code>
+        </div>
+      </div>
+      <div class="service-card reveal" style="--delay: 0.3s">
+        <div class="service-icon-wrap">
+          <div class="service-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+        </div>
+        <h3 data-es="Infraestructura IT" data-en="IT Infrastructure">Infraestructura IT</h3>
+        <p data-es="Servidores, redes, cloud, seguridad y soporte técnico. Tu negocio siempre en línea." data-en="Servers, networks, cloud, security and tech support. Your business always online.">Servidores, redes, cloud, seguridad y soporte técnico. Tu negocio siempre en línea.</p>
+        <div class="service-code">
+          <code>ssh root@server <span class="str">'systemctl start app'</span></code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROCESS ══════════ -->
+<section class="section section-dark" id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag" data-es="Cómo trabajo" data-en="How I work">Cómo trabajo</span>
+      <h2 data-es="Proceso" data-en="Process">Proceso</h2>
+    </div>
+    <div class="process-timeline">
+      <div class="process-step reveal" style="--delay: 0.1s">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3 data-es="Consulta" data-en="Consultation">Consulta</h3>
+          <p data-es="Entiendo tu negocio, tus objetivos y diseñamos juntos la solución ideal." data-en="I understand your business, your goals, and we design the ideal solution together.">Entiendo tu negocio, tus objetivos y diseñamos juntos la solución ideal.</p>
+        </div>
+        <div class="step-code"><code>&gt; <span class="fn">analyze</span>(requirements)</code></div>
+      </div>
+      <div class="process-step reveal" style="--delay: 0.2s">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3 data-es="Diseño & Desarrollo" data-en="Design & Development">Diseño & Desarrollo</h3>
+          <p data-es="Construyo tu solución con las mejores tecnologías, con avances visibles cada semana." data-en="I build your solution with the best technologies, with visible progress every week.">Construyo tu solución con las mejores tecnologías, con avances visibles cada semana.</p>
+        </div>
+        <div class="step-code"><code>&gt; <span class="fn">build</span>(solution).<span class="fn">iterate</span>()</code></div>
+      </div>
+      <div class="process-step reveal" style="--delay: 0.3s">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3 data-es="Entrega & Soporte" data-en="Delivery & Support">Entrega & Soporte</h3>
+          <p data-es="Deploy, capacitación y soporte continuo. Tu proyecto en las mejores manos." data-en="Deploy, training and ongoing support. Your project in the best hands.">Deploy, capacitación y soporte continuo. Tu proyecto en las mejores manos.</p>
+        </div>
+        <div class="step-code"><code>&gt; <span class="fn">deploy</span>().<span class="fn">support</span>(<span class="str">'24/7'</span>)</code></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TECH STACK ══════════ -->
+<section class="section section-light" id="tech">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag" data-es="Herramientas" data-en="Tools">Herramientas</span>
+      <h2 data-es="Tecnologías" data-en="Tech Stack">Tecnologías</h2>
+    </div>
+    <div class="tech-grid reveal">
+      <div class="tech-pill">Flutter</div>
+      <div class="tech-pill">Dart</div>
+      <div class="tech-pill">JavaScript</div>
+      <div class="tech-pill">Node.js</div>
+      <div class="tech-pill">HTML5 / CSS3</div>
+      <div class="tech-pill">Firebase</div>
+      <div class="tech-pill">SQL Server</div>
+      <div class="tech-pill">PostgreSQL</div>
+      <div class="tech-pill">Git / GitHub</div>
+      <div class="tech-pill">Linux</div>
+      <div class="tech-pill">Docker</div>
+      <div class="tech-pill">Nginx</div>
+      <div class="tech-pill">Cloud (GCP / AWS)</div>
+      <div class="tech-pill">REST APIs</div>
+      <div class="tech-pill">Firestore</div>
+      <div class="tech-pill">Express.js</div>
+    </div>
+
+    <div class="code-block reveal">
+      <div class="code-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"></span>
+        <span class="code-dot green"></span>
+        <span class="code-filename">codeateJD.js</span>
+      </div>
+      <pre class="code-body"><code><span class="kw">const</span> developer = {
+  brand: <span class="str">'codeateJD'</span>,
+  role: <span class="str">'Freelance Developer'</span>,
+  skills: [<span class="str">'Web'</span>, <span class="str">'Mobile'</span>, <span class="str">'Infrastructure'</span>],
+  passion: <span class="str">'Building elegant solutions'</span>,
+  available: <span class="bool">true</span>,
+
+  <span class="fn">createProject</span>(idea) {
+    <span class="kw">return</span> idea
+      .<span class="fn">design</span>()
+      .<span class="fn">develop</span>()
+      .<span class="fn">test</span>()
+      .<span class="fn">deploy</span>();  <span class="cm">// ✅ Ready!</span>
+  }
+};</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="section section-gradient" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag light" data-es="Empecemos" data-en="Let's start">Empecemos</span>
+      <h2 data-es="¿Tienes un proyecto en mente?" data-en="Have a project in mind?">¿Tienes un proyecto en mente?</h2>
+      <p class="contact-sub" data-es="Cuéntame tu idea y hagamos algo increíble juntos." data-en="Tell me your idea and let's build something amazing together.">Cuéntame tu idea y hagamos algo increíble juntos.</p>
+    </div>
+    <div class="contact-cards reveal">
+      <a href="mailto:jjdelpino78@gmail.com" class="contact-card">
+        <div class="contact-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <span>Email</span>
+        <small>jjdelpino78@gmail.com</small>
+      </a>
+      <a href="https://wa.me/584120000000" target="_blank" class="contact-card">
+        <div class="contact-icon whatsapp">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.634-1.215A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.16 0-4.162-.684-5.803-1.847l-.416-.248-4.312 1.131 1.152-4.207-.272-.432A9.71 9.71 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z"/></svg>
+        </div>
+        <span>WhatsApp</span>
+        <small data-es="Escríbeme directo" data-en="Message me directly">Escríbeme directo</small>
+      </a>
+      <a href="https://github.com/jdelpino78" target="_blank" class="contact-card">
+        <div class="contact-icon github">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </div>
+        <span>GitHub</span>
+        <small>jdelpino78</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <span class="footer-logo">codeate<span class="gradient-text">JD</span></span>
+    <p>&copy; 2026 Jose Delpino. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+  </div>
+</footer>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
+  <a href="#process" data-es="Proceso" data-en="Process">Proceso</a>
+  <a href="#tech" data-es="Tecnologías" data-en="Tech Stack">Tecnologías</a>
+  <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
