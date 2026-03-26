@@ -115,6 +115,25 @@ langBtn.addEventListener('click', () => {
   typingEl.textContent = '';
 });
 
+// ══════════ THEME TOGGLE (DAY/NIGHT) ══════════
+const themeBtn = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+let isDark = true;
+
+// Check saved preference
+if (localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light');
+  themeIcon.innerHTML = '&#9728;'; // sol
+  isDark = false;
+}
+
+themeBtn.addEventListener('click', () => {
+  isDark = !isDark;
+  document.body.classList.toggle('light', !isDark);
+  themeIcon.innerHTML = isDark ? '&#9790;' : '&#9728;'; // luna o sol
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
 // ══════════ SMOOTH SCROLL ══════════
 document.querySelectorAll('a[href^="#"]').forEach((a) =>
   a.addEventListener('click', (e) => {
