@@ -46,11 +46,18 @@ body {
 }
 .nav-logo {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 20px; font-weight: 500; color: rgba(255,255,255,0.8);
+  font-size: 20px; font-weight: 500;
   text-decoration: none; letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #f093fb, #f5576c, #ffd200, #4facfe, #43e97b, #667eea);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: colorShift 6s ease-in-out infinite;
 }
 .nav-logo .gradient-text {
   font-weight: 800;
+  -webkit-text-fill-color: transparent;
 }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a {
@@ -142,9 +149,19 @@ body {
 .logo-codeate {
   font-family: 'JetBrains Mono', monospace;
   font-size: clamp(40px, 8vw, 64px);
-  font-weight: 400;
-  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+  background: linear-gradient(90deg, #f093fb, #f5576c, #ffd200, #4facfe, #43e97b, #667eea);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   letter-spacing: -2px;
+  animation: colorShift 6s ease-in-out infinite;
+}
+@keyframes colorShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 .logo-jd {
   font-family: 'JetBrains Mono', monospace;
@@ -434,7 +451,13 @@ body {
 }
 .footer-logo {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.6);
+  font-size: 16px; font-weight: 500;
+  background: linear-gradient(90deg, #f093fb, #f5576c, #ffd200, #4facfe, #43e97b, #667eea);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: colorShift 6s ease-in-out infinite;
 }
 .footer-logo .gradient-text { font-weight: 800; }
 .footer p { color: rgba(255,255,255,0.3); font-size: 13px; }
