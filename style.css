@@ -780,11 +780,12 @@ body.light .hero {
 }
 body.light .hero-desc { color: rgba(0,0,0,0.7); }
 body.light .logo-codeate {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  background-size: 100% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: none;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #374151 !important;
+  color: #374151 !important;
+  animation: none !important;
 }
 body.light .typing-text {
   background: none !important;
