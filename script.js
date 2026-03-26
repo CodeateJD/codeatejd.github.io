@@ -1,7 +1,7 @@
 // ══════════ TYPING ANIMATION ══════════
 const phrases = {
   es: [
-    'Desarrollo web elegante y a tu medida',
+    'Desarrollo web elegante para tu negocio',
     'Apps móviles con Flutter',
     'Infraestructura que no falla',
     'Tu idea, hecha realidad',
