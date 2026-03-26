@@ -18,6 +18,7 @@
     <div class="nav-links">
       <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
       <a href="#process" data-es="Proceso" data-en="Process">Proceso</a>
+      <a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a>
       <a href="#tech" data-es="Tecnologías" data-en="Tech Stack">Tecnologías</a>
       <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
       <button class="lang-toggle" id="langToggle" title="Switch language">EN</button>
@@ -168,6 +169,118 @@
   </div>
 </section>
 
+<!-- ══════════ PROJECTS ══════════ -->
+<section class="section section-light" id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag" data-es="Portafolio" data-en="Portfolio">Portafolio</span>
+      <h2 data-es="Proyectos" data-en="Projects">Proyectos</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal" style="--delay: 0.1s">
+        <div class="project-preview">
+          <div class="project-screen">
+            <div class="screen-bar"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <div class="screen-body">
+              <code>
+                <span class="kw">SELECT</span> ventas, compras, stock<br>
+                <span class="kw">FROM</span> <span class="fn">EAWASHOP</span><br>
+                <span class="kw">WHERE</span> fecha <span class="kw">BETWEEN</span> <span class="str">'2026-01'</span><br>
+                <span class="kw">GROUP BY</span> sucursal<br>
+                <span class="cm">-- Exportar a Excel/PDF</span>
+              </code>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span>Node.js</span><span>Express</span><span>SQL Server</span><span>ExcelJS</span>
+          </div>
+          <h3>SimplitRPT</h3>
+          <p data-es="Reporteador web empresarial. Ventas, compras, inventario, seguimiento de artículos, diagnóstico de stock. Export a Excel con agrupación nativa." data-en="Enterprise web reporter. Sales, purchases, inventory, item tracking, stock diagnostics. Excel export with native grouping.">Reporteador web empresarial. Ventas, compras, inventario, seguimiento de artículos, diagnóstico de stock. Export a Excel con agrupación nativa.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.2s">
+        <div class="project-preview">
+          <div class="project-screen dark">
+            <div class="screen-bar"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <div class="screen-body">
+              <code>
+                <span class="kw">class</span> <span class="fn">ParamoCafe</span> <span class="kw">extends</span> StatelessWidget {<br>
+                &nbsp;&nbsp;<span class="fn">build</span>(ctx) => MaterialApp(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;home: <span class="fn">HomeScreen</span>(),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;theme: <span class="fn">paramoTheme</span>,<br>
+                &nbsp;&nbsp;);<br>
+                }
+              </code>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span>Flutter</span><span>Firebase</span><span>Dart</span><span>InvuPOS</span>
+          </div>
+          <h3 data-es="App Páramo Café" data-en="Páramo Café App">App Páramo Café</h3>
+          <p data-es="App de fidelización para cafetería. Pedidos en línea, sistema de puntos y tiers, integración con InvuPOS, panel admin, notificaciones." data-en="Loyalty app for coffee shop. Online orders, points & tiers system, InvuPOS integration, admin panel, notifications.">App de fidelización para cafetería. Pedidos en línea, sistema de puntos y tiers, integración con InvuPOS, panel admin, notificaciones.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.3s">
+        <div class="project-preview">
+          <div class="project-screen">
+            <div class="screen-bar"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <div class="screen-body">
+              <code>
+                <span class="kw">const</span> store = {<br>
+                &nbsp;&nbsp;cart: <span class="fn">CartProvider</span>(),<br>
+                &nbsp;&nbsp;payments: [<span class="str">'stripe'</span>, <span class="str">'paypal'</span>],<br>
+                &nbsp;&nbsp;shipping: <span class="bool">true</span>,<br>
+                };<br>
+                <span class="fn">deploy</span>(store); <span class="cm">// Live!</span>
+              </code>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span>E-commerce</span><span>JavaScript</span><span>API</span><span>Payments</span>
+          </div>
+          <h3>E-commerce</h3>
+          <p data-es="Tiendas en línea completas. Catálogo, carrito, pagos integrados, gestión de inventario y envíos." data-en="Complete online stores. Catalog, cart, integrated payments, inventory and shipping management.">Tiendas en línea completas. Catálogo, carrito, pagos integrados, gestión de inventario y envíos.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="--delay: 0.4s">
+        <div class="project-preview infra-preview">
+          <div class="infra-icons">
+            <div class="infra-node server">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="#4ade80"/><circle cx="6" cy="18" r="1" fill="#4ade80"/></svg>
+            </div>
+            <div class="infra-line"></div>
+            <div class="infra-node cloud">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+            </div>
+            <div class="infra-line"></div>
+            <div class="infra-node shield">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke="#4ade80"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span>Linux</span><span>Networking</span><span>Cloud</span><span>Security</span>
+          </div>
+          <h3 data-es="Infraestructura IT" data-en="IT Infrastructure">Infraestructura IT</h3>
+          <p data-es="Diseño y gestión de redes, servidores, cloud, seguridad perimetral, VPN, backups y soporte técnico 24/7." data-en="Network design & management, servers, cloud, perimeter security, VPN, backups and 24/7 tech support.">Diseño y gestión de redes, servidores, cloud, seguridad perimetral, VPN, backups y soporte técnico 24/7.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ TECH STACK ══════════ -->
 <section class="section section-light" id="tech">
   <div class="container">
@@ -259,6 +372,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
   <a href="#process" data-es="Proceso" data-en="Process">Proceso</a>
+  <a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a>
   <a href="#tech" data-es="Tecnologías" data-en="Tech Stack">Tecnologías</a>
   <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
 </div>

@@ -386,6 +386,103 @@ body {
   margin-top: 8px;
 }
 
+/* ══════════ PROJECTS GRID ══════════ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.project-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.12);
+  border-color: transparent;
+}
+.project-preview {
+  height: 180px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f7ff, #eef2ff);
+}
+.project-screen {
+  width: 100%;
+  max-width: 280px;
+  background: #1e1e2e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.project-screen.dark { background: #0d1117; }
+.screen-bar {
+  display: flex; gap: 6px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.05);
+}
+.screen-body {
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #e0e0e0;
+  min-height: 100px;
+}
+
+/* Infra card */
+.infra-preview {
+  background: linear-gradient(135deg, #0a0a1a, #1a1a3e);
+}
+.infra-icons {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.infra-node {
+  width: 56px; height: 56px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  color: #a5b4fc;
+  transition: all 0.4s;
+}
+.project-card:hover .infra-node {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+.infra-line {
+  width: 30px; height: 2px;
+  background: linear-gradient(90deg, rgba(102,126,234,0.3), rgba(102,126,234,0.6));
+}
+
+.project-info { padding: 24px; }
+.project-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 12px;
+}
+.project-tags span {
+  background: #f5f3ff;
+  color: #5b21b6;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.project-info h3 {
+  font-size: 18px; font-weight: 800;
+  margin-bottom: 8px; color: #1a1a1a;
+}
+.project-info p {
+  color: #777; font-size: 14px; line-height: 1.6;
+}
+
 /* ══════════ TECH GRID ══════════ */
 .tech-grid {
   display: flex; flex-wrap: wrap; gap: 12px;
