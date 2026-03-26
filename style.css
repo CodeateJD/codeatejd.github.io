@@ -468,6 +468,17 @@ body {
   letter-spacing: 3px;
 }
 
+.client-icon.imprirap {
+  font-size: 18px;
+  color: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+.imprirap-rap {
+  color: #e63946;
+  font-weight: 900;
+}
+
 /* ══════════ PROJECTS GRID ══════════ */
 .projects-grid {
   display: grid;
