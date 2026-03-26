@@ -7,6 +7,11 @@ body {
   color: #fff;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.6s ease, color 0.6s ease;
+}
+body *, body *::before, body *::after {
+  transition: background 0.6s ease, background-color 0.6s ease, color 0.4s ease,
+              border-color 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
 }
 
 /* ══════════ TYPOGRAPHY ══════════ */
@@ -801,7 +806,18 @@ body.light .tech-pill:hover { background: #bae6fd; border-color: #38bdf8; }
 body.light .code-block { border-color: rgba(0,0,0,0.08); }
 
 /* Clients light */
+body.light .client-logo { opacity: 0.5; filter: grayscale(0%); }
+body.light .client-logo:hover { opacity: 1; }
+body.light .client-logo span { color: #64748b; }
 body.light .client-logo:hover span { color: #0369a1; }
+
+/* Process light */
+body.light .section-dark h3 { color: #1a1a1a; }
+body.light .step-num {
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 
 body.light .nav { color: #1a1a1a; }
 body.light .nav.scrolled { background: rgba(248,248,252,0.9); border-bottom-color: rgba(0,0,0,0.06); }
