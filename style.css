@@ -783,10 +783,25 @@ body.light .scroll-dot { background: rgba(0,0,0,0.3); }
 body.light .code-float {
   background: #1a1a2e;
   border-color: rgba(255,255,255,0.1);
-  opacity: 0.6;
+  opacity: 0.7;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
+body.light .code-float code { color: #e0e0e0; }
+
+/* Servicios light */
+body.light .section-light { background: #f0f9ff; }
+body.light .service-card { background: #fff; border-color: #e0f2fe; }
+body.light .service-card:hover { box-shadow: 0 20px 50px rgba(56, 189, 248, 0.12); }
+body.light .service-code { background: #1a1a2e; color: #a5b4fc; }
+
+/* Tech light */
+body.light .tech-pill { background: #e0f2fe; color: #0369a1; }
+body.light .tech-pill:hover { background: #bae6fd; border-color: #38bdf8; }
+body.light .code-block { border-color: rgba(0,0,0,0.08); }
+
+/* Clients light */
+body.light .client-logo:hover span { color: #0369a1; }
 
 body.light .nav { color: #1a1a1a; }
 body.light .nav.scrolled { background: rgba(248,248,252,0.9); border-bottom-color: rgba(0,0,0,0.06); }
