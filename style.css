@@ -227,16 +227,28 @@ body {
 .hero-typing {
   font-family: 'JetBrains Mono', monospace;
   font-size: 16px;
-  color: #c3e88d;
   margin-bottom: 20px;
   min-height: 28px;
+}
+.typing-text {
+  background: linear-gradient(90deg, #4ade80, #22c55e, #f59e0b, #f97316, #4ade80);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: typingColors 4s ease-in-out infinite;
+}
+@keyframes typingColors {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 .typing-prefix { color: #667eea; }
 .typing-cursor { animation: blink 0.7s step-end infinite; color: #667eea; }
 
 .hero-desc {
   font-size: 17px; line-height: 1.7;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.85);
   max-width: 520px; margin: 0 auto 36px;
 }
 
@@ -750,7 +762,7 @@ body {
 body.light { background: #f8f8fc; color: #1a1a1a; }
 
 body.light .hero {
-  background: linear-gradient(160deg, #e8e8f8 0%, #d4d4f0 40%, #c8b8e8 70%, #e8e8f8 100%);
+  background: #fff;
 }
 body.light .hero-desc { color: rgba(0,0,0,0.5); }
 body.light .hero-badge { background: rgba(102,126,234,0.12); border-color: rgba(102,126,234,0.3); color: #4338ca; }
@@ -766,9 +778,11 @@ body.light .scroll-mouse { border-color: rgba(0,0,0,0.2); }
 body.light .scroll-dot { background: rgba(0,0,0,0.3); }
 
 body.light .code-float {
-  background: rgba(0,0,0,0.04);
-  border-color: rgba(0,0,0,0.08);
-  opacity: 0.5;
+  background: #1a1a2e;
+  border-color: rgba(255,255,255,0.1);
+  opacity: 0.6;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 body.light .nav { color: #1a1a1a; }
@@ -790,7 +804,7 @@ body.light .section-dark .step-code { color: #999; }
 body.light .process-step { border-bottom-color: rgba(0,0,0,0.06); }
 
 body.light .section-gradient {
-  background: linear-gradient(160deg, #d4d4f0 0%, #c8b8e8 50%, #d4d4f0 100%);
+  background: #f0f0f8;
 }
 body.light .contact-sub { color: rgba(0,0,0,0.5); }
 body.light .contact-card { background: rgba(255,255,255,0.6); border-color: rgba(0,0,0,0.08); color: #1a1a1a; }
