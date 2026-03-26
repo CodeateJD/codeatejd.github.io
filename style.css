@@ -787,13 +787,14 @@ body.light .logo-codeate {
   animation: none;
 }
 body.light .typing-text {
-  background: linear-gradient(90deg, #0369a1, #4338ca);
-  background-size: 100% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: none;
-  filter: none;
-  text-shadow: none;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #4338ca !important;
+  color: #4338ca !important;
+  animation: none !important;
+  filter: none !important;
+  text-shadow: none !important;
 }
 body.light .typing-prefix { color: #6366f1; }
 body.light .typing-cursor { color: #6366f1; }
