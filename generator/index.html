@@ -179,7 +179,10 @@
   }
   .post.size-post { width: 540px; height: 540px; }
   .post.size-story { width: 540px; height: 960px; }
-  .post.size-fb { width: 600px; height: 315px; padding: 45px 50px; }
+  .post.size-fb { width: 600px; height: 315px; padding: 45px 50px; animation: none !important; background-size: 100% 100% !important; }
+  .post.size-fb .particles,
+  .post.size-fb .glow-orbs,
+  .post.size-fb .scanlines { display: none !important; }
 
   @keyframes gradientShift {
     0% { background-position: 0% 25%; }
@@ -1116,12 +1119,28 @@ function getActivePalette() {
 function applyPalette() {
   const p = getActivePalette();
   const canvas = document.getElementById('postCanvas');
-  canvas.style.background = p.bg;
-  canvas.style.backgroundSize = '200% 200%';
+
+  if (currentSize === 'fb') {
+    // Facebook: fondo solido oscuro, sin gradiente
+    canvas.style.background = extractSolidBg(p.bg);
+    canvas.style.backgroundSize = '';
+  } else {
+    canvas.style.background = p.bg;
+    canvas.style.backgroundSize = '200% 200%';
+  }
+
   canvas.style.setProperty('--accent', p.accent);
   document.getElementById('decoLine').style.background = p.line;
   const cta = document.getElementById('render-svc-cta');
   if (cta) cta.style.background = p.cta;
+}
+
+function extractSolidBg(bg) {
+  // Extrae el color medio del gradiente para usar como fondo solido
+  const colors = bg.match(/#[0-9a-fA-F]{6}|rgb\([^)]+\)|hsl\([^)]+\)/g);
+  if (colors && colors.length >= 2) return colors[1]; // color del medio
+  if (colors && colors.length >= 1) return colors[0];
+  return '#0f172a';
 }
 
 /* ── Custom color pickers ── */
