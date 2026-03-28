@@ -3,8 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>codeateJD — Jose Delpino | Developer & IT Solutions</title>
-<meta name="description" content="codeateJD — Freelance Web & App Developer. Soluciones digitales elegantes y para tu negocio.">
+<title>codeateJD — Jose Delpino | Desarrollo Web, Apps Moviles & IT</title>
+<meta name="description" content="Jose Delpino — Freelance developer especializado en desarrollo web, apps moviles con Flutter, reportes empresariales, APIs, cloud e infraestructura IT. Venezuela / remoto.">
+<meta name="keywords" content="desarrollador web, freelance, flutter, nodejs, apps moviles, desarrollo web venezuela, codeateJD, jose delpino, programador, IT solutions, firebase, sql server, cloud, devops">
+<meta name="author" content="Jose Delpino — codeateJD">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jdelpino78.github.io/codeateJD/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jdelpino78.github.io/codeateJD/">
+<meta property="og:title" content="codeateJD — Jose Delpino | Desarrollo Web, Apps & IT">
+<meta property="og:description" content="Freelance developer: sitios web, apps Flutter, reportes, APIs, cloud e infraestructura. Soluciones a medida para tu negocio.">
+<meta property="og:image" content="https://jdelpino78.github.io/codeateJD/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_VE">
+<meta property="og:site_name" content="codeateJD">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="codeateJD — Jose Delpino | Desarrollo Web, Apps & IT">
+<meta name="twitter:description" content="Freelance developer: sitios web, apps Flutter, reportes, APIs, cloud e infraestructura. Soluciones a medida para tu negocio.">
+<meta name="twitter:image" content="https://jdelpino78.github.io/codeateJD/img/og-cover.png">
+
+<!-- Schema.org / JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "codeateJD",
+  "alternateName": "Jose Delpino Developer",
+  "url": "https://jdelpino78.github.io/codeateJD/",
+  "description": "Freelance developer especializado en desarrollo web, apps moviles, reportes empresariales, APIs y soluciones cloud.",
+  "founder": {
+    "@type": "Person",
+    "name": "Jose Delpino",
+    "jobTitle": "Full Stack Developer & IT Consultant",
+    "email": "jjdelpino78@gmail.com",
+    "url": "https://jdelpino78.github.io/codeateJD/"
+  },
+  "areaServed": ["Venezuela", "Latinoamerica", "Remoto"],
+  "serviceType": ["Desarrollo Web", "Apps Moviles", "Reportes y Dashboards", "APIs y Backend", "Cloud e Infraestructura", "Soporte IT"],
+  "knowsAbout": ["JavaScript", "Node.js", "Flutter", "Firebase", "SQL Server", "Docker", "Linux", "Nginx", "REST APIs", "Git"],
+  "sameAs": [
+    "https://www.instagram.com/codeatejd/",
+    "https://github.com/jdelpino78"
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -12,7 +60,7 @@
 <body>
 
 <!-- ══════════ NAV ══════════ -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" role="navigation" aria-label="Menu principal">
   <div class="nav-inner">
     <a href="#" class="nav-logo"><span class="nav-codeate">codeate</span><span class="nav-jd-terminal"><span class="terminal-prompt">&gt;</span>JD</span></a>
     <div class="nav-links">
@@ -32,7 +80,7 @@
 </nav>
 
 <!-- ══════════ HERO ══════════ -->
-<section class="hero" id="hero">
+<main><section class="hero" id="hero" aria-label="Presentacion">
   <!-- Floating code snippets -->
   <div class="code-float code-float-1" aria-hidden="true">
     <pre><code><span class="kw">const</span> <span class="fn">buildApp</span> = <span class="kw">async</span> () => {
@@ -260,7 +308,7 @@
 </section>
 
 <!-- ══════════ CONTACT ══════════ -->
-<section class="section section-gradient" id="contact">
+<section class="section section-gradient" id="contact" aria-label="Contacto">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-tag light" data-es="Empecemos" data-en="Let's start">Empecemos</span>
@@ -286,11 +334,18 @@
   </div>
 </section>
 
+</main>
+
 <!-- ══════════ FOOTER ══════════ -->
-<footer class="footer">
+<footer class="footer" role="contentinfo">
   <div class="container footer-inner">
     <span class="footer-logo"><span class="nav-codeate">codeate</span><span class="nav-jd-terminal"><span class="terminal-prompt">&gt;</span>JD</span></span>
     <p>&copy; 2026 Jose Delpino. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+    <nav aria-label="Redes sociales" style="margin-top:8px;display:flex;gap:12px;justify-content:center">
+      <a href="https://www.instagram.com/codeatejd/" target="_blank" rel="noopener" aria-label="Instagram de codeateJD" style="color:inherit;opacity:0.5;font-size:13px">Instagram</a>
+      <a href="https://github.com/jdelpino78" target="_blank" rel="noopener" aria-label="GitHub de Jose Delpino" style="color:inherit;opacity:0.5;font-size:13px">GitHub</a>
+      <a href="https://wa.me/584149144103" target="_blank" rel="noopener" aria-label="WhatsApp de codeateJD" style="color:inherit;opacity:0.5;font-size:13px">WhatsApp</a>
+    </nav>
   </div>
 </footer>
 
