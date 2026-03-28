@@ -172,14 +172,14 @@
   .post {
     position: relative; overflow: hidden;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 60px 50px;
+    text-align: center; padding: 70px 50px;
     font-family: 'Inter', sans-serif;
     background-size: 200% 200%;
     animation: gradientShift 8s ease infinite;
   }
   .post.size-post { width: 540px; height: 540px; }
   .post.size-story { width: 540px; height: 960px; }
-  .post.size-fb { width: 600px; height: 315px; padding: 40px 50px; }
+  .post.size-fb { width: 600px; height: 315px; padding: 45px 50px; }
 
   @keyframes gradientShift {
     0% { background-position: 0% 25%; }
@@ -196,31 +196,31 @@
   }
   .particles span {
     position: absolute; font-family: 'JetBrains Mono', monospace;
-    color: rgba(255,255,255,0.06); font-size: 16px; font-weight: 700;
+    color: rgba(255,255,255,0.04); font-size: 14px; font-weight: 700;
     animation: particleFloat var(--d, 6s) ease-in-out infinite;
     animation-delay: var(--delay, 0s);
     left: var(--x, 10%); top: var(--y, 20%);
   }
   @keyframes particleFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
-    33% { transform: translateY(-12px) rotate(5deg); opacity: 1; }
-    66% { transform: translateY(8px) rotate(-3deg); opacity: 0.4; }
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    33% { transform: translateY(-10px) rotate(3deg); opacity: 0.5; }
+    66% { transform: translateY(6px) rotate(-2deg); opacity: 0.2; }
   }
 
   /* ── Glow orbs ── */
   .glow-orbs { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
   .glow-orb {
-    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.15;
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.06;
     animation: orbPulse var(--d, 5s) ease-in-out infinite;
   }
   @keyframes orbPulse {
-    0%, 100% { transform: scale(1); opacity: 0.1; }
-    50% { transform: scale(1.3); opacity: 0.2; }
+    0%, 100% { transform: scale(1); opacity: 0.04; }
+    50% { transform: scale(1.15); opacity: 0.08; }
   }
 
   /* ── Content entrance ── */
   .post-content {
-    position: relative; z-index: 1;
+    position: relative; z-index: 5;
     animation: contentIn 0.5s ease-out;
     width: 100%;
     display: flex; flex-direction: column; align-items: center;
@@ -468,7 +468,7 @@
 
   /* ── Scanlines (subtle) ── */
   .post .scanlines {
-    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
     background: repeating-linear-gradient(
       0deg,
       transparent, transparent 2px,
@@ -1171,15 +1171,15 @@ const PARTICLE_SYMBOLS = ['{','}','<','>','/>','//','&&','||','++','::','[ ]','(
 
 function buildParticles() {
   const container = document.getElementById('particles');
-  const count = 10;
+  const count = 7;
   let html = '';
   for (let i = 0; i < count; i++) {
     const sym = PARTICLE_SYMBOLS[Math.floor(Math.random() * PARTICLE_SYMBOLS.length)];
     const x = 5 + Math.random() * 85;
     const y = 5 + Math.random() * 85;
-    const d = 5 + Math.random() * 8;
+    const d = 6 + Math.random() * 8;
     const delay = Math.random() * 5;
-    const size = 12 + Math.random() * 14;
+    const size = 10 + Math.random() * 10;
     html += `<span style="--x:${x}%;--y:${y}%;--d:${d}s;--delay:${delay}s;font-size:${size}px">${sym}</span>`;
   }
   container.innerHTML = html;
@@ -1189,11 +1189,11 @@ function buildGlowOrbs() {
   const container = document.getElementById('glowOrbs');
   const p = getActivePalette();
   let html = '';
-  for (let i = 0; i < 3; i++) {
-    const size = 80 + Math.random() * 120;
-    const x = 10 + Math.random() * 60;
-    const y = 10 + Math.random() * 60;
-    const d = 4 + Math.random() * 6;
+  for (let i = 0; i < 2; i++) {
+    const size = 60 + Math.random() * 80;
+    const x = 15 + Math.random() * 50;
+    const y = 15 + Math.random() * 50;
+    const d = 5 + Math.random() * 6;
     html += `<div class="glow-orb" style="width:${size}px;height:${size}px;left:${x}%;top:${y}%;background:${p.accent};--d:${d}s"></div>`;
   }
   container.innerHTML = html;
@@ -1669,13 +1669,30 @@ async function downloadPost(platform) {
   if (platform === 'fb' && currentSize !== 'fb') {
     canvas.className = 'post tpl-' + currentTpl + ' size-fb';
     applyPalette();
-    await new Promise(r => setTimeout(r, 100)); // let reflow
   }
+
+  // Pause all animations and reset to clean state for capture
+  canvas.style.animationPlayState = 'paused';
+  canvas.style.backgroundPosition = '50% 50%';
+  canvas.querySelectorAll('.glow-orb, .particles span').forEach(el => {
+    el.style.animationPlayState = 'paused';
+    el.style.opacity = el.classList.contains('glow-orb') ? '0.05' : '0.3';
+  });
+
+  await new Promise(r => setTimeout(r, 80)); // let reflow
 
   const result = await html2canvas(canvas, {
     scale: 2,
     useCORS: true,
     backgroundColor: null,
+  });
+
+  // Resume animations
+  canvas.style.animationPlayState = '';
+  canvas.style.backgroundPosition = '';
+  canvas.querySelectorAll('.glow-orb, .particles span').forEach(el => {
+    el.style.animationPlayState = '';
+    el.style.opacity = '';
   });
 
   const link = document.createElement('a');
