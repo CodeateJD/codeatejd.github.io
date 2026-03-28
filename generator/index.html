@@ -781,7 +781,7 @@ const json = await data.json();
           <div class="cover-badge" id="render-cover-badge">// Nuevo Post</div>
           <div class="post-title" id="render-cover-title">codeateJD</div>
           <div class="cover-subtitle" id="render-cover-subtitle">Desarrollo web, apps moviles & soluciones IT</div>
-          <div class="cover-divider"></div>
+          <div class="cover-divider" id="render-cover-divider"></div>
         </div>
 
         <!-- LOGOS content -->
@@ -1317,30 +1317,61 @@ function updatePreview() {
   const avatarSvg = getAvatarSvg();
 
   if (currentTpl === 'tip') {
-    document.getElementById('render-tip-tag').textContent = document.getElementById('tip-tag').value;
+    const tipTag = document.getElementById('tip-tag').value.trim();
+    const tipTagEl = document.getElementById('render-tip-tag');
+    tipTagEl.textContent = tipTag;
+    tipTagEl.style.display = tipTag ? '' : 'none';
+
     document.getElementById('render-tip-title').textContent = document.getElementById('tip-title').value;
-    document.getElementById('render-tip-code').innerHTML = highlightCode(document.getElementById('tip-code').value);
+
+    const tipCode = document.getElementById('tip-code').value.trim();
+    const codeEl = document.getElementById('render-tip-code');
+    codeEl.innerHTML = tipCode ? highlightCode(tipCode) : '';
+    codeEl.style.display = tipCode ? '' : 'none';
 
     const tipAv = document.getElementById('tipAvatar');
     tipAv.style.display = showAvatar ? 'flex' : 'none';
     if (showAvatar) document.getElementById('tipAvatarSvg').innerHTML = avatarSvg;
 
   } else if (currentTpl === 'project') {
-    document.getElementById('render-proj-tag').textContent = document.getElementById('proj-tag').value;
+    const projTag = document.getElementById('proj-tag').value.trim();
+    const projTagEl = document.getElementById('render-proj-tag');
+    projTagEl.textContent = projTag;
+    projTagEl.style.display = projTag ? '' : 'none';
+
     document.getElementById('render-proj-title').textContent = document.getElementById('proj-title').value;
-    document.getElementById('render-proj-desc').textContent = document.getElementById('proj-desc').value;
+
+    const projDesc = document.getElementById('proj-desc').value.trim();
+    const descEl = document.getElementById('render-proj-desc');
+    descEl.textContent = projDesc;
+    descEl.style.display = projDesc ? '' : 'none';
+
     const techs = document.getElementById('proj-techs').value.split(',').map(t => t.trim()).filter(Boolean);
-    document.getElementById('render-proj-techs').innerHTML = techs.map(t => `<span class="tech-tag">${t}</span>`).join('');
+    const techsEl = document.getElementById('render-proj-techs');
+    techsEl.innerHTML = techs.map(t => `<span class="tech-tag">${t}</span>`).join('');
+    techsEl.style.display = techs.length ? '' : 'none';
 
     document.getElementById('tipAvatar').style.display = showAvatar ? 'flex' : 'none';
     if (showAvatar) document.getElementById('tipAvatarSvg').innerHTML = avatarSvg;
 
   } else if (currentTpl === 'service') {
-    document.getElementById('render-svc-icon').textContent = document.getElementById('svc-icon').value;
+    const svcIcon = document.getElementById('svc-icon').value.trim();
+    const iconEl = document.getElementById('render-svc-icon');
+    iconEl.textContent = svcIcon;
+    iconEl.style.display = svcIcon ? '' : 'none';
+
     document.getElementById('render-svc-title').textContent = document.getElementById('svc-title').value;
-    document.getElementById('render-svc-desc').textContent = document.getElementById('svc-desc').value;
-    document.getElementById('render-svc-cta').textContent = document.getElementById('svc-cta').value;
-    applyPalette(); // re-apply CTA gradient
+
+    const svcDesc = document.getElementById('svc-desc').value.trim();
+    const svcDescEl = document.getElementById('render-svc-desc');
+    svcDescEl.textContent = svcDesc;
+    svcDescEl.style.display = svcDesc ? '' : 'none';
+
+    const svcCta = document.getElementById('svc-cta').value.trim();
+    const ctaEl = document.getElementById('render-svc-cta');
+    ctaEl.textContent = svcCta;
+    ctaEl.style.display = svcCta ? '' : 'none';
+    applyPalette();
 
     document.getElementById('tipAvatar').style.display = showAvatar ? 'flex' : 'none';
     if (showAvatar) document.getElementById('tipAvatarSvg').innerHTML = avatarSvg;
@@ -1364,15 +1395,28 @@ function updatePreview() {
     }
 
   } else if (currentTpl === 'cover') {
-    document.getElementById('render-cover-badge').textContent = document.getElementById('cover-badge').value;
-    document.getElementById('render-cover-title').textContent = document.getElementById('cover-title').value;
-    document.getElementById('render-cover-subtitle').textContent = document.getElementById('cover-subtitle').value;
+    const coverBadge = document.getElementById('cover-badge').value.trim();
+    const coverTitle = document.getElementById('cover-title').value.trim();
+    const coverSub = document.getElementById('cover-subtitle').value.trim();
+
+    const badgeEl = document.getElementById('render-cover-badge');
+    badgeEl.textContent = coverBadge;
+    badgeEl.style.display = coverBadge ? '' : 'none';
+
+    document.getElementById('render-cover-title').textContent = coverTitle;
+
+    const subEl = document.getElementById('render-cover-subtitle');
+    subEl.textContent = coverSub;
+    subEl.style.display = coverSub ? '' : 'none';
+
+    document.getElementById('render-cover-divider').style.display = coverSub ? '' : 'none';
 
     const logoEl = document.getElementById('render-cover-logo');
     if (coverLogoData) {
+      logoEl.style.display = '';
       logoEl.innerHTML = `<img src="${coverLogoData}">`;
     } else {
-      logoEl.innerHTML = '<span class="logo-placeholder">LOGO</span>';
+      logoEl.style.display = 'none';
     }
 
     document.getElementById('tipAvatar').style.display = showAvatar ? 'flex' : 'none';
