@@ -223,7 +223,7 @@
     font-family: 'JetBrains Mono', monospace;
   }
   .post.tpl-project .post-title { font-size: 30px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 14px; }
-  .post.tpl-project .post-desc { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 20px; }
+  .post.tpl-project .post-desc { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 20px; }
   .post.tpl-project .post-techs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
   .post.tpl-project .tech-tag {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
@@ -236,7 +236,7 @@
   /* ── Template: Service ── */
   .post.tpl-service .post-icon { font-size: 52px; margin-bottom: 16px; }
   .post.tpl-service .post-title { font-size: 28px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 14px; }
-  .post.tpl-service .post-desc { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  .post.tpl-service .post-desc { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7; }
   .post.tpl-service .post-cta {
     margin-top: 20px; padding: 11px 30px; border-radius: 50px;
     color: #fff; font-weight: 700; font-size: 13px; display: inline-block;
@@ -307,7 +307,7 @@
     display: flex; align-items: center; justify-content: center; gap: 6px;
     font-family: 'JetBrains Mono', monospace; font-size: 13px; z-index: 2;
   }
-  .post-brand .brand-codeate { color: rgba(255,255,255,0.35); font-weight: 500; }
+  .post-brand .brand-codeate { color: rgba(255,255,255,0.6); font-weight: 500; }
   .post-brand .brand-jd {
     background: rgba(0,0,0,0.4); color: #fff; padding: 2px 8px; border-radius: 5px;
     font-weight: 800; font-size: 11px;
@@ -325,28 +325,27 @@
   .post .deco-dots span:nth-child(3) { background: #28c840; }
 
   .post .deco-line {
-    position: absolute; top: 0; left: 0; right: 0; height: 4px; z-index: 2;
+    position: absolute; top: 0; left: 0; right: 0; height: 5px; z-index: 2;
   }
 
   /* ── Template: Cover (Portada) ── */
   .post.tpl-cover .cover-badge {
-    display: inline-block; padding: 6px 18px; border-radius: 50px;
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700;
+    display: inline-block; padding: 8px 22px; border-radius: 50px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
     color: var(--accent, #4ade80); text-transform: uppercase; letter-spacing: 2px;
-    margin-bottom: 20px; backdrop-filter: blur(10px);
+    margin-bottom: 24px;
   }
   .post.tpl-cover .post-title {
-    font-size: 38px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 16px;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    font-size: 44px; font-weight: 900; color: #ffffff; line-height: 1.1; margin-bottom: 18px;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
   }
   .post.tpl-cover .cover-subtitle {
-    font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.5; margin-bottom: 20px;
+    font-size: 17px; color: rgba(255,255,255,0.75); line-height: 1.5; margin-bottom: 24px;
     max-width: 85%;
   }
   .post.tpl-cover .cover-divider {
-    width: 60px; height: 3px; border-radius: 2px; background: var(--accent, #4ade80);
-    opacity: 0.6;
+    width: 70px; height: 4px; border-radius: 2px; background: var(--accent, #4ade80);
   }
   .post.tpl-cover .cover-logo {
     width: 80px; height: 80px; border-radius: 16px; overflow: hidden;
@@ -376,7 +375,7 @@
     font-size: 28px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 8px;
   }
   .post.tpl-logos .logos-subtitle {
-    font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 24px;
+    font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 24px;
   }
   .post.tpl-logos .logos-grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
@@ -729,9 +728,7 @@ const json = await data.json();
 
         <!-- COVER content -->
         <div id="content-cover" class="post-content" style="display:none">
-          <div class="cover-logo" id="render-cover-logo">
-            <span class="logo-placeholder">LOGO</span>
-          </div>
+          <div class="cover-logo" id="render-cover-logo" style="display:none"></div>
           <div class="cover-badge" id="render-cover-badge">// Nuevo Post</div>
           <div class="post-title" id="render-cover-title">codeateJD</div>
           <div class="cover-subtitle" id="render-cover-subtitle">Desarrollo web, apps moviles & soluciones IT</div>
@@ -994,18 +991,18 @@ const LIBRARY = {
    ══════════════════════════════════════════════ */
 
 const PALETTES = [
-  { name: 'Neon',    bg: 'linear-gradient(160deg, #0a0a0f, #1a1a3e, #2d1b69)', accent: '#4ade80', line: 'linear-gradient(90deg, #667eea, #764ba2, #f093fb)', cta: 'linear-gradient(135deg, #667eea, #764ba2)' },
-  { name: 'Ocean',   bg: 'linear-gradient(160deg, #0c1426, #0d2847, #0a3d62)', accent: '#38bdf8', line: 'linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc)', cta: 'linear-gradient(135deg, #0ea5e9, #0284c7)' },
-  { name: 'Sunset',  bg: 'linear-gradient(160deg, #1a0a0a, #2d1520, #3d1a30)', accent: '#fb923c', line: 'linear-gradient(90deg, #f97316, #ef4444, #ec4899)', cta: 'linear-gradient(135deg, #f97316, #ef4444)' },
-  { name: 'Emerald', bg: 'linear-gradient(160deg, #021a0a, #0a2e1a, #0d4428)', accent: '#34d399', line: 'linear-gradient(90deg, #10b981, #34d399, #6ee7b7)', cta: 'linear-gradient(135deg, #10b981, #059669)' },
-  { name: 'Ruby',    bg: 'linear-gradient(160deg, #1a0508, #2d0a10, #4a0e1c)', accent: '#fb7185', line: 'linear-gradient(90deg, #e11d48, #f43f5e, #fb7185)', cta: 'linear-gradient(135deg, #e11d48, #be123c)' },
-  { name: 'Gold',    bg: 'linear-gradient(160deg, #1a1505, #2d2408, #3d3010)', accent: '#fbbf24', line: 'linear-gradient(90deg, #f59e0b, #fbbf24, #fcd34d)', cta: 'linear-gradient(135deg, #f59e0b, #d97706)' },
-  { name: 'Cyber',   bg: 'linear-gradient(160deg, #0a0a14, #14142b, #1e0a3d)', accent: '#a78bfa', line: 'linear-gradient(90deg, #8b5cf6, #a78bfa, #c4b5fd)', cta: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' },
-  { name: 'Minimal', bg: 'linear-gradient(160deg, #111111, #1a1a1a, #222222)', accent: '#e2e8f0', line: 'linear-gradient(90deg, #525252, #737373, #a3a3a3)', cta: 'linear-gradient(135deg, #525252, #404040)' },
-  { name: 'Aurora',  bg: 'linear-gradient(160deg, #0a0f1e, #0f1b3d, #152050)', accent: '#67e8f9', line: 'linear-gradient(90deg, #06b6d4, #22d3ee, #a5f3fc)', cta: 'linear-gradient(135deg, #06b6d4, #0891b2)' },
-  { name: 'Magma',   bg: 'linear-gradient(160deg, #1c0a00, #2d1200, #451a00)', accent: '#fdba74', line: 'linear-gradient(90deg, #ea580c, #f97316, #fdba74)', cta: 'linear-gradient(135deg, #ea580c, #c2410c)' },
-  { name: 'Frost',   bg: 'linear-gradient(160deg, #0f1729, #162038, #1a2744)', accent: '#93c5fd', line: 'linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)', cta: 'linear-gradient(135deg, #3b82f6, #2563eb)' },
-  { name: 'Toxic',   bg: 'linear-gradient(160deg, #0a1a05, #102e08, #183d0d)', accent: '#a3e635', line: 'linear-gradient(90deg, #65a30d, #84cc16, #a3e635)', cta: 'linear-gradient(135deg, #65a30d, #4d7c0f)' },
+  { name: 'Neon',    bg: 'linear-gradient(135deg, #1a1a3e, #3b1f7a, #5b2d9e)', accent: '#4ade80', line: 'linear-gradient(90deg, #667eea, #764ba2, #f093fb)', cta: 'linear-gradient(135deg, #667eea, #764ba2)' },
+  { name: 'Ocean',   bg: 'linear-gradient(135deg, #0c2340, #1a4a7a, #0e6ba8)', accent: '#38bdf8', line: 'linear-gradient(90deg, #0ea5e9, #38bdf8, #7dd3fc)', cta: 'linear-gradient(135deg, #0ea5e9, #0284c7)' },
+  { name: 'Sunset',  bg: 'linear-gradient(135deg, #2d1520, #6b2040, #a03050)', accent: '#fbbf24', line: 'linear-gradient(90deg, #f97316, #ef4444, #ec4899)', cta: 'linear-gradient(135deg, #f97316, #ef4444)' },
+  { name: 'Emerald', bg: 'linear-gradient(135deg, #0a2e1a, #145a35, #1a7a4a)', accent: '#34d399', line: 'linear-gradient(90deg, #10b981, #34d399, #6ee7b7)', cta: 'linear-gradient(135deg, #10b981, #059669)' },
+  { name: 'Ruby',    bg: 'linear-gradient(135deg, #2d0a10, #6b1525, #9a1e35)', accent: '#fb7185', line: 'linear-gradient(90deg, #e11d48, #f43f5e, #fb7185)', cta: 'linear-gradient(135deg, #e11d48, #be123c)' },
+  { name: 'Gold',    bg: 'linear-gradient(135deg, #2d2408, #5a4510, #7a6020)', accent: '#fbbf24', line: 'linear-gradient(90deg, #f59e0b, #fbbf24, #fcd34d)', cta: 'linear-gradient(135deg, #f59e0b, #d97706)' },
+  { name: 'Cyber',   bg: 'linear-gradient(135deg, #14142b, #2a1a5e, #3d2080)', accent: '#a78bfa', line: 'linear-gradient(90deg, #8b5cf6, #a78bfa, #c4b5fd)', cta: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' },
+  { name: 'Dark',    bg: 'linear-gradient(135deg, #1a1a1a, #2a2a2a, #333333)', accent: '#e2e8f0', line: 'linear-gradient(90deg, #525252, #737373, #a3a3a3)', cta: 'linear-gradient(135deg, #525252, #404040)' },
+  { name: 'Aurora',  bg: 'linear-gradient(135deg, #0f1b3d, #1a3570, #205090)', accent: '#67e8f9', line: 'linear-gradient(90deg, #06b6d4, #22d3ee, #a5f3fc)', cta: 'linear-gradient(135deg, #06b6d4, #0891b2)' },
+  { name: 'Magma',   bg: 'linear-gradient(135deg, #2d1200, #5a2500, #803800)', accent: '#fdba74', line: 'linear-gradient(90deg, #ea580c, #f97316, #fdba74)', cta: 'linear-gradient(135deg, #ea580c, #c2410c)' },
+  { name: 'Royal',   bg: 'linear-gradient(135deg, #162038, #253a6a, #354f90)', accent: '#93c5fd', line: 'linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd)', cta: 'linear-gradient(135deg, #3b82f6, #2563eb)' },
+  { name: 'Toxic',   bg: 'linear-gradient(135deg, #102e08, #1a5a10, #258020)', accent: '#a3e635', line: 'linear-gradient(90deg, #65a30d, #84cc16, #a3e635)', cta: 'linear-gradient(135deg, #65a30d, #4d7c0f)' },
 ];
 
 function generateRandomPaletteData() {
