@@ -182,16 +182,11 @@
   /* ── Decorations hidden (don't export well with html2canvas) ── */
   .particles, .glow-orbs, .scanlines { display: none; }
 
-  /* ── Content entrance ── */
+  /* ── Content ── */
   .post-content {
     position: relative; z-index: 5;
-    animation: contentIn 0.5s ease-out;
     width: 100%;
     display: flex; flex-direction: column; align-items: center;
-  }
-  @keyframes contentIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 
   /* ── Template: Code Tip ── */
@@ -202,10 +197,10 @@
   }
   .post.tpl-tip .post-title { font-size: 26px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 20px; }
   .post.tpl-tip .post-code {
-    background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+    background: #141425; border: 1px solid #2a2a4a; border-radius: 12px;
     padding: 18px 22px; text-align: left; width: 100%;
     font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7; color: #e0e0e0;
-    white-space: pre-wrap; backdrop-filter: blur(10px);
+    white-space: pre-wrap;
   }
   .post.tpl-tip .post-code .kw { color: #c792ea; }
   .post.tpl-tip .post-code .fn { color: #82aaff; }
@@ -226,9 +221,9 @@
   .post.tpl-project .post-desc { font-size: 15px; color: #e2e8f0; line-height: 1.6; margin-bottom: 20px; }
   .post.tpl-project .post-techs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
   .post.tpl-project .tech-tag {
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    background: #1a2040; border: 1px solid #2a3060;
     color: var(--accent, #38bdf8); padding: 5px 12px; border-radius: 8px;
-    font-size: 11px; font-weight: 700; backdrop-filter: blur(10px);
+    font-size: 11px; font-weight: 700;
   }
   .post.size-fb.tpl-project .post-title { font-size: 24px; }
   .post.size-fb.tpl-project .post-desc { font-size: 13px; margin-bottom: 14px; }
@@ -247,19 +242,19 @@
 
   /* ── Template: Quote ── */
   .post.tpl-quote .quote-bubble {
-    position: relative; background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
-    padding: 28px 32px; margin-bottom: 20px; backdrop-filter: blur(10px);
+    position: relative; background: #1a1a35;
+    border: 1px solid #2a2a50; border-radius: 20px;
+    padding: 28px 32px; margin-bottom: 20px;
     max-width: 100%;
   }
   .post.tpl-quote .quote-bubble::after {
     content: ''; position: absolute; bottom: -12px; left: 50%;
     transform: translateX(-50%); width: 0; height: 0;
     border-left: 12px solid transparent; border-right: 12px solid transparent;
-    border-top: 12px solid rgba(255,255,255,0.05);
+    border-top: 12px solid #1a1a35;
   }
   .post.tpl-quote .post-quote-mark {
-    font-size: 48px; color: var(--accent, rgba(102,126,234,0.4)); line-height: 1; margin-bottom: 8px;
+    font-size: 48px; color: var(--accent, #667eea); line-height: 1; margin-bottom: 8px;
   }
   .post.tpl-quote .post-title {
     font-size: 20px; font-weight: 600; color: #fff; line-height: 1.5;
@@ -271,7 +266,7 @@
   .post.tpl-quote .avatar-circle {
     width: 64px; height: 64px; border-radius: 50%; overflow: hidden;
     border: 3px solid var(--accent, #667eea);
-    background: rgba(0,0,0,0.3);
+    background: #111122;
     display: flex; align-items: center; justify-content: center;
   }
   .post.tpl-quote .avatar-circle svg { width: 100%; height: 100%; }
@@ -292,12 +287,12 @@
   .tip-avatar .av-circle {
     width: 40px; height: 40px; border-radius: 50%; overflow: hidden;
     border: 2px solid var(--accent, #4ade80);
-    background: rgba(0,0,0,0.3);
+    background: #111122;
   }
   .tip-avatar .av-circle svg { width: 100%; height: 100%; }
   .tip-avatar .av-bubble {
-    background: rgba(255,255,255,0.08); border-radius: 12px 12px 12px 0;
-    padding: 4px 10px; font-size: 10px; color: rgba(255,255,255,0.5);
+    background: #2a2a4a; border-radius: 12px 12px 12px 0;
+    padding: 4px 10px; font-size: 10px; color: #ffffff;
     font-family: 'JetBrains Mono', monospace;
   }
 
@@ -307,9 +302,9 @@
     display: flex; align-items: center; justify-content: center; gap: 6px;
     font-family: 'JetBrains Mono', monospace; font-size: 13px; z-index: 2;
   }
-  .post-brand .brand-codeate { color: rgba(255,255,255,0.6); font-weight: 500; }
+  .post-brand .brand-codeate { color: #ffffff; font-weight: 500; }
   .post-brand .brand-jd {
-    background: rgba(0,0,0,0.4); color: #fff; padding: 2px 8px; border-radius: 5px;
+    background: #1a1a1a; color: #fff; padding: 2px 8px; border-radius: 5px;
     font-weight: 800; font-size: 11px;
   }
   .post-brand .brand-jd .gt { color: var(--accent, #4ade80); font-weight: 500; }
@@ -349,16 +344,15 @@
   }
   .post.tpl-cover .cover-logo {
     width: 80px; height: 80px; border-radius: 16px; overflow: hidden;
-    border: 2px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.3);
+    border: 2px solid #3a3a5a; background: #111122;
     display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-    backdrop-filter: blur(10px);
   }
   .post.tpl-cover .cover-logo img {
     width: 100%; height: 100%; object-fit: contain; padding: 8px;
   }
   .post.tpl-cover .cover-logo .logo-placeholder {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: rgba(255,255,255,0.3); font-weight: 700;
+    color: #64748b; font-weight: 700;
   }
   .post.size-fb.tpl-cover .post-title { font-size: 28px; }
   .post.size-fb.tpl-cover .cover-subtitle { font-size: 13px; }
@@ -383,21 +377,21 @@
   }
   .post.tpl-logos .logo-cell {
     aspect-ratio: 1; border-radius: 14px; overflow: hidden;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    background: #1a1a35; border: 1px solid #2a2a50;
     display: flex; align-items: center; justify-content: center;
     backdrop-filter: blur(10px); transition: transform 0.3s;
     padding: 10px;
   }
   .post.tpl-logos .logo-cell img {
     width: 100%; height: 100%; object-fit: contain;
-    filter: brightness(0) invert(1); opacity: 0.85;
+    filter: brightness(0) invert(1);
   }
   .post.tpl-logos .logo-cell.has-color img {
     filter: none; opacity: 1;
   }
   .post.tpl-logos .logo-cell .logo-text {
     font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700;
-    color: rgba(255,255,255,0.4); text-align: center; text-transform: uppercase;
+    color: #94a3b8; text-align: center; text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   .post.size-fb.tpl-logos .post-title { font-size: 22px; }
