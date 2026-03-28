@@ -174,52 +174,13 @@
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 70px 50px;
     font-family: 'Inter', sans-serif;
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease infinite;
   }
   .post.size-post { width: 540px; height: 540px; }
   .post.size-story { width: 540px; height: 960px; }
   .post.size-fb { width: 600px; height: 315px; padding: 45px 50px; animation: none !important; background-size: 100% 100% !important; }
-  .post.size-fb .particles,
-  .post.size-fb .glow-orbs,
-  .post.size-fb .scanlines { display: none !important; }
 
-  @keyframes gradientShift {
-    0% { background-position: 0% 25%; }
-    25% { background-position: 50% 0%; }
-    50% { background-position: 100% 75%; }
-    75% { background-position: 50% 100%; }
-    100% { background-position: 0% 25%; }
-  }
-
-  /* ── Floating particles ── */
-  .particles {
-    position: absolute; inset: 0; pointer-events: none; z-index: 0;
-    overflow: hidden;
-  }
-  .particles span {
-    position: absolute; font-family: 'JetBrains Mono', monospace;
-    color: rgba(255,255,255,0.04); font-size: 14px; font-weight: 700;
-    animation: particleFloat var(--d, 6s) ease-in-out infinite;
-    animation-delay: var(--delay, 0s);
-    left: var(--x, 10%); top: var(--y, 20%);
-  }
-  @keyframes particleFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
-    33% { transform: translateY(-10px) rotate(3deg); opacity: 0.5; }
-    66% { transform: translateY(6px) rotate(-2deg); opacity: 0.2; }
-  }
-
-  /* ── Glow orbs ── */
-  .glow-orbs { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-  .glow-orb {
-    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.06;
-    animation: orbPulse var(--d, 5s) ease-in-out infinite;
-  }
-  @keyframes orbPulse {
-    0%, 100% { transform: scale(1); opacity: 0.04; }
-    50% { transform: scale(1.15); opacity: 0.08; }
-  }
+  /* ── Decorations hidden (don't export well with html2canvas) ── */
+  .particles, .glow-orbs, .scanlines { display: none; }
 
   /* ── Content entrance ── */
   .post-content {
@@ -468,16 +429,6 @@
   .color-logo-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
   .color-logo-row label { font-size: 11px; color: #94a3b8; flex: 1; }
   .color-logo-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: #667eea; }
-
-  /* ── Scanlines (subtle) ── */
-  .post .scanlines {
-    position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent, transparent 2px,
-      rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px
-    );
-  }
 
   @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; }
@@ -1108,8 +1059,6 @@ function randomPalette() {
   customPalette = generateRandomPaletteData();
   document.querySelectorAll('.pal-btn').forEach(b => b.classList.remove('active'));
   applyPalette();
-  buildParticles();
-  buildGlowOrbs();
 }
 
 function getActivePalette() {
@@ -1172,7 +1121,6 @@ function applyCustomColors() {
   };
   document.querySelectorAll('.pal-btn').forEach(b => b.classList.remove('active'));
   applyPalette();
-  buildGlowOrbs();
 }
 
 function darken(hex, amount) {
@@ -1180,42 +1128,6 @@ function darken(hex, amount) {
   const g = Math.round(parseInt(hex.slice(3,5), 16) * (1 - amount));
   const b = Math.round(parseInt(hex.slice(5,7), 16) * (1 - amount));
   return `rgb(${r},${g},${b})`;
-}
-
-/* ══════════════════════════════════════════════
-   PARTICLES & GLOW ORBS
-   ══════════════════════════════════════════════ */
-
-const PARTICLE_SYMBOLS = ['{','}','<','>','/>','//','&&','||','++','::','[ ]','( )','#','$','@','*','==','!=','=>'];
-
-function buildParticles() {
-  const container = document.getElementById('particles');
-  const count = 7;
-  let html = '';
-  for (let i = 0; i < count; i++) {
-    const sym = PARTICLE_SYMBOLS[Math.floor(Math.random() * PARTICLE_SYMBOLS.length)];
-    const x = 5 + Math.random() * 85;
-    const y = 5 + Math.random() * 85;
-    const d = 6 + Math.random() * 8;
-    const delay = Math.random() * 5;
-    const size = 10 + Math.random() * 10;
-    html += `<span style="--x:${x}%;--y:${y}%;--d:${d}s;--delay:${delay}s;font-size:${size}px">${sym}</span>`;
-  }
-  container.innerHTML = html;
-}
-
-function buildGlowOrbs() {
-  const container = document.getElementById('glowOrbs');
-  const p = getActivePalette();
-  let html = '';
-  for (let i = 0; i < 2; i++) {
-    const size = 60 + Math.random() * 80;
-    const x = 15 + Math.random() * 50;
-    const y = 15 + Math.random() * 50;
-    const d = 5 + Math.random() * 6;
-    html += `<div class="glow-orb" style="width:${size}px;height:${size}px;left:${x}%;top:${y}%;background:${p.accent};--d:${d}s"></div>`;
-  }
-  container.innerHTML = html;
 }
 
 /* ══════════════════════════════════════════════
@@ -1298,8 +1210,6 @@ function randomContent() {
     setPalette(rp);
   }
   randomAvatarIndex();
-  buildParticles();
-  buildGlowOrbs();
 
   // Re-trigger entrance animation
   const content = document.getElementById('content-' + currentTpl);
@@ -1734,28 +1644,10 @@ async function downloadPost(platform) {
     applyPalette();
   }
 
-  // Pause all animations and reset to clean state for capture
-  canvas.style.animationPlayState = 'paused';
-  canvas.style.backgroundPosition = '50% 50%';
-  canvas.querySelectorAll('.glow-orb, .particles span').forEach(el => {
-    el.style.animationPlayState = 'paused';
-    el.style.opacity = el.classList.contains('glow-orb') ? '0.05' : '0.3';
-  });
-
-  await new Promise(r => setTimeout(r, 80)); // let reflow
-
   const result = await html2canvas(canvas, {
     scale: 2,
     useCORS: true,
     backgroundColor: null,
-  });
-
-  // Resume animations
-  canvas.style.animationPlayState = '';
-  canvas.style.backgroundPosition = '';
-  canvas.querySelectorAll('.glow-orb, .particles span').forEach(el => {
-    el.style.animationPlayState = '';
-    el.style.opacity = '';
   });
 
   const link = document.createElement('a');
@@ -1776,8 +1668,6 @@ async function downloadPost(platform) {
    ══════════════════════════════════════════════ */
 
 buildPalettePicker();
-buildParticles();
-buildGlowOrbs();
 updateCounter();
 applyPalette();
 updatePreview();
