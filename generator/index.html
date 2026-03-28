@@ -107,6 +107,41 @@
   .btn-dl-fb { background: linear-gradient(135deg, #1877f2, #0d5fc4); }
   .btn-dl-fb:hover { box-shadow: 0 6px 20px rgba(24,119,242,0.4); }
 
+  /* ── Caption / Accessibility panel ── */
+  .caption-panel { margin-top: 18px; }
+  .caption-block {
+    background: #0f172a; border: 1px solid #334155; border-radius: 10px;
+    padding: 12px; margin-bottom: 10px; position: relative;
+  }
+  .caption-block .caption-label {
+    font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+  }
+  .caption-block .caption-text {
+    font-size: 12px; color: #cbd5e1; line-height: 1.6; white-space: pre-wrap;
+    max-height: 160px; overflow-y: auto;
+  }
+  .caption-block .caption-text.hashtags {
+    color: #667eea; font-size: 11px; line-height: 1.8;
+  }
+  .caption-block .caption-text.alt-text {
+    color: #94a3b8; font-style: italic; font-size: 11px;
+  }
+  .btn-copy {
+    position: absolute; top: 10px; right: 10px; padding: 4px 10px;
+    border-radius: 6px; border: 1px solid #334155; background: transparent;
+    color: #64748b; font-size: 10px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-copy:hover { border-color: #4ade80; color: #4ade80; }
+  .btn-copy.copied { border-color: #4ade80; color: #4ade80; }
+  .btn-copy-all {
+    width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155;
+    background: rgba(74,222,128,0.05); color: #4ade80; font-size: 12px;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-copy-all:hover { background: rgba(74,222,128,0.1); border-color: #4ade80; }
+
   /* ── Preview area ── */
   .preview-area {
     display: flex; align-items: center; justify-content: center;
@@ -643,6 +678,31 @@ const json = await data.json();
     <div class="download-row">
       <button class="btn-download btn-dl-ig" onclick="downloadPost('ig')">&#11015;&#65039; Instagram</button>
       <button class="btn-download btn-dl-fb" onclick="downloadPost('fb')">&#11015;&#65039; Facebook</button>
+    </div>
+
+    <!-- ── Caption / Accesibilidad ── -->
+    <div class="caption-panel">
+      <div class="section-title">Publicacion (copiar y pegar)</div>
+
+      <div class="caption-block">
+        <div class="caption-label">&#128221; Caption</div>
+        <button class="btn-copy" onclick="copyText('captionOutput')">Copiar</button>
+        <div class="caption-text" id="captionOutput"></div>
+      </div>
+
+      <div class="caption-block">
+        <div class="caption-label"># Hashtags</div>
+        <button class="btn-copy" onclick="copyText('hashtagsOutput')">Copiar</button>
+        <div class="caption-text hashtags" id="hashtagsOutput"></div>
+      </div>
+
+      <div class="caption-block">
+        <div class="caption-label">&#9855; Alt Text (accesibilidad)</div>
+        <button class="btn-copy" onclick="copyText('altTextOutput')">Copiar</button>
+        <div class="caption-text alt-text" id="altTextOutput"></div>
+      </div>
+
+      <button class="btn-copy-all" onclick="copyAll()">&#128203; Copiar Todo (Caption + Hashtags)</button>
     </div>
   </div>
 
@@ -1325,6 +1385,8 @@ function updatePreview() {
     document.getElementById('tipAvatar').style.display = showAvatar ? 'flex' : 'none';
     if (showAvatar) document.getElementById('tipAvatarSvg').innerHTML = avatarSvg;
   }
+
+  updateCaptionPanel();
 }
 
 /* ══════════════════════════════════════════════
@@ -1378,6 +1440,207 @@ function renderLogoThumbs() {
   container.innerHTML = uploadedLogos.map((src, i) =>
     `<div class="logo-thumb"><img src="${src}"><button class="remove-logo" onclick="removeLogo(${i})">x</button></div>`
   ).join('');
+}
+
+/* ══════════════════════════════════════════════
+   CAPTION, HASHTAGS & ALT TEXT GENERATOR
+   ══════════════════════════════════════════════ */
+
+const HASHTAG_POOLS = {
+  tip: {
+    base: ['#programacion','#codigo','#developer','#devtips','#webdev','#coding','#codeateJD','#aprendeaprogramar','#softwaredev','#tech'],
+    js: ['#javascript','#js','#nodejs','#reactjs','#frontend'],
+    css: ['#css','#webdesign','#uidesign','#cssgrid','#frontend'],
+    flutter: ['#flutter','#dart','#mobiledev','#appdevelopment','#crossplatform'],
+    sql: ['#sql','#database','#backend','#data','#sqlserver'],
+    git: ['#git','#github','#versioncontrol','#devtools','#opensource'],
+    ts: ['#typescript','#javascript','#typed','#frontend','#fullstack'],
+    react: ['#react','#reactjs','#hooks','#frontend','#webapp'],
+    cloud: ['#cloud','#devops','#docker','#aws','#hosting','#servidor'],
+    node: ['#nodejs','#express','#backend','#api','#restapi'],
+    server: ['#linux','#servidor','#sysadmin','#infra','#hosting'],
+    data: ['#data','#datawarehouse','#analytics','#bi','#etl'],
+    iot: ['#iot','#mqtt','#sensores','#industria40','#automation'],
+  },
+  project: ['#programacion','#proyecto','#developer','#portfolio','#codeateJD','#webdev','#appdevelopment','#tech','#software','#freelance','#devlife'],
+  service: ['#servicios','#desarrolloweb','#freelance','#codeateJD','#negociodigital','#transformaciondigital','#tecnologia','#pymes','#emprendimiento','#solucionesIT'],
+  quote: ['#testimonio','#clientefeliz','#codeateJD','#resultados','#freelance','#desarrolloweb','#software','#confianza','#calidad','#casodeexito'],
+  cover: ['#codeateJD','#developer','#programacion','#tech','#codigo','#software','#freelance','#devlife','#webdev','#contenidotech'],
+  logos: ['#aliados','#partners','#codeateJD','#networking','#colaboracion','#empresas','#tecnologia','#negocio','#confianza','#equipo'],
+};
+
+const CAPTION_INTROS = {
+  tip: [
+    '💡 Tip del día:',
+    '🧠 ¿Sabías esto?',
+    '⚡ Mejora tu código:',
+    '🔥 Code tip:',
+    '💻 Aprende algo nuevo:',
+    '✨ Escribe mejor código:',
+    '🚀 Level up:',
+    '📌 Guarda este tip:',
+  ],
+  project: [
+    '🚀 Nuevo proyecto:',
+    '💼 Del portafolio:',
+    '🏗️ Construimos esto:',
+    '✅ Proyecto completado:',
+    '⚡ Case study:',
+  ],
+  service: [
+    '🛠️ ¿Necesitas esto?',
+    '💡 Servicio disponible:',
+    '🎯 Solución para tu negocio:',
+    '⚡ Podemos ayudarte:',
+    '🔧 Lo que hacemos:',
+  ],
+  quote: [
+    '💬 Lo que dicen nuestros clientes:',
+    '⭐ Testimonio real:',
+    '🤝 Resultados que hablan:',
+    '💯 Feedback de cliente:',
+    '🏆 Caso de éxito:',
+  ],
+  cover: [
+    '📢 Nuevo contenido:',
+    '🎬 Nueva serie:',
+    '🔥 Esto viene:',
+    '✨ Contenido fresco:',
+    '🚀 Arrancamos:',
+  ],
+  logos: [
+    '🤝 Nuestros aliados:',
+    '⭐ Empresas que confían en nosotros:',
+    '💪 Juntos somos más:',
+    '🏢 Partners estratégicos:',
+    '🌐 Red de aliados:',
+  ],
+};
+
+const CAPTION_CLOSERS = [
+  '\n\n👉 Sígueme para más contenido → @codeatejd',
+  '\n\n💬 ¿Dudas? Escríbeme por DM → @codeatejd',
+  '\n\n🔔 Activa notificaciones para no perderte nada → @codeatejd',
+  '\n\n📩 ¿Quieres algo así? Hablemos → @codeatejd',
+  '\n\n❤️ Dale like y comparte si te sirvió → @codeatejd',
+  '\n\n💾 Guarda este post para después → @codeatejd',
+];
+
+function generateCaption() {
+  const intros = CAPTION_INTROS[currentTpl] || CAPTION_INTROS.tip;
+  const intro = intros[Math.floor(Math.random() * intros.length)];
+  const closer = CAPTION_CLOSERS[Math.floor(Math.random() * CAPTION_CLOSERS.length)];
+  let body = '';
+
+  if (currentTpl === 'tip') {
+    const title = document.getElementById('tip-tag').value + ' — ' + document.getElementById('tip-title').value;
+    body = `\n\n${title}\n\nEste tip te va a ahorrar tiempo y dolores de cabeza. Aplícalo en tu próximo proyecto. 👇`;
+  } else if (currentTpl === 'project') {
+    const name = document.getElementById('proj-title').value;
+    const desc = document.getElementById('proj-desc').value;
+    const techs = document.getElementById('proj-techs').value;
+    body = `\n\n📋 ${name}\n\n${desc}\n\n🛠️ Stack: ${techs}`;
+  } else if (currentTpl === 'service') {
+    const title = document.getElementById('svc-title').value;
+    const desc = document.getElementById('svc-desc').value;
+    body = `\n\n${document.getElementById('svc-icon').value} ${title}\n\n${desc}`;
+  } else if (currentTpl === 'quote') {
+    const text = document.getElementById('quote-text').value;
+    const author = document.getElementById('quote-author').value;
+    const role = document.getElementById('quote-role').value;
+    body = `\n\n"${text}"\n\n— ${author}, ${role}`;
+  } else if (currentTpl === 'cover') {
+    const title = document.getElementById('cover-title').value;
+    const subtitle = document.getElementById('cover-subtitle').value;
+    body = `\n\n${title}\n\n${subtitle}`;
+  } else if (currentTpl === 'logos') {
+    const title = document.getElementById('logos-title').value;
+    const subtitle = document.getElementById('logos-subtitle').value;
+    body = `\n\n${title}\n\n${subtitle}\n\nGracias por confiar en nosotros 🙌`;
+  }
+
+  return intro + body + closer;
+}
+
+function generateHashtags() {
+  let tags = [];
+  if (currentTpl === 'tip') {
+    const tagValue = document.getElementById('tip-tag').value.toLowerCase();
+    tags = [...HASHTAG_POOLS.tip.base];
+    if (tagValue.includes('javascript') || tagValue.includes('js')) tags.push(...HASHTAG_POOLS.tip.js);
+    else if (tagValue.includes('css')) tags.push(...HASHTAG_POOLS.tip.css);
+    else if (tagValue.includes('flutter')) tags.push(...HASHTAG_POOLS.tip.flutter);
+    else if (tagValue.includes('sql') || tagValue.includes('data')) tags.push(...HASHTAG_POOLS.tip.sql, ...HASHTAG_POOLS.tip.data);
+    else if (tagValue.includes('git')) tags.push(...HASHTAG_POOLS.tip.git);
+    else if (tagValue.includes('typescript') || tagValue.includes('ts')) tags.push(...HASHTAG_POOLS.tip.ts);
+    else if (tagValue.includes('react')) tags.push(...HASHTAG_POOLS.tip.react);
+    else if (tagValue.includes('cloud') || tagValue.includes('devops')) tags.push(...HASHTAG_POOLS.tip.cloud);
+    else if (tagValue.includes('node')) tags.push(...HASHTAG_POOLS.tip.node);
+    else if (tagValue.includes('servidor') || tagValue.includes('server')) tags.push(...HASHTAG_POOLS.tip.server);
+    else if (tagValue.includes('iot')) tags.push(...HASHTAG_POOLS.tip.iot);
+    else tags.push(...HASHTAG_POOLS.tip.js); // default
+  } else {
+    tags = [...HASHTAG_POOLS[currentTpl]];
+  }
+  // Deduplicate and limit to 20
+  const unique = [...new Set(tags)];
+  const shuffled = unique.sort(() => Math.random() - 0.5).slice(0, 20);
+  return shuffled.join(' ');
+}
+
+function generateAltText() {
+  if (currentTpl === 'tip') {
+    const tag = document.getElementById('tip-tag').value;
+    const title = document.getElementById('tip-title').value;
+    return `Imagen de post de Instagram con un tip de programación. Etiqueta: "${tag}". Título: "${title}". Incluye un bloque de código con ejemplo práctico. Publicado por codeateJD.`;
+  } else if (currentTpl === 'project') {
+    const name = document.getElementById('proj-title').value;
+    const techs = document.getElementById('proj-techs').value;
+    return `Imagen de portafolio mostrando el proyecto "${name}". Tecnologías utilizadas: ${techs}. Publicado por codeateJD.`;
+  } else if (currentTpl === 'service') {
+    const title = document.getElementById('svc-title').value;
+    return `Imagen promocional del servicio "${title}" ofrecido por codeateJD, freelance de desarrollo web y aplicaciones móviles.`;
+  } else if (currentTpl === 'quote') {
+    const author = document.getElementById('quote-author').value;
+    const role = document.getElementById('quote-role').value;
+    return `Testimonio de ${author}, ${role}. Reseña sobre el trabajo realizado por codeateJD en desarrollo de software.`;
+  } else if (currentTpl === 'cover') {
+    const title = document.getElementById('cover-title').value;
+    const subtitle = document.getElementById('cover-subtitle').value;
+    return `Portada de publicación de codeateJD. Título: "${title}". Subtítulo: "${subtitle}". Diseño con gradiente y branding profesional.`;
+  } else if (currentTpl === 'logos') {
+    const title = document.getElementById('logos-title').value;
+    const count = uploadedLogos.length;
+    return `Imagen de ${title} mostrando ${count > 0 ? count + ' logos de empresas aliadas' : 'una cuadrícula de logos de aliados comerciales'} de codeateJD.`;
+  }
+  return 'Imagen generada por codeateJD, generador de posts para redes sociales.';
+}
+
+function updateCaptionPanel() {
+  document.getElementById('captionOutput').textContent = generateCaption();
+  document.getElementById('hashtagsOutput').textContent = generateHashtags();
+  document.getElementById('altTextOutput').textContent = generateAltText();
+}
+
+function copyText(elementId) {
+  const text = document.getElementById(elementId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById(elementId).closest('.caption-block').querySelector('.btn-copy');
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyAll() {
+  const caption = document.getElementById('captionOutput').textContent;
+  const hashtags = document.getElementById('hashtagsOutput').textContent;
+  const full = caption + '\n\n.\n.\n.\n\n' + hashtags;
+  navigator.clipboard.writeText(full).then(() => {
+    const btn = document.querySelector('.btn-copy-all');
+    btn.textContent = '✅ Copiado al portapapeles!';
+    setTimeout(() => { btn.textContent = '📋 Copiar Todo (Caption + Hashtags)'; }, 2500);
+  });
 }
 
 /* ══════════════════════════════════════════════
