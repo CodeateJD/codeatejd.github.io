@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jdelpino78.github.io/codeateJD/sitemap.xml
+Sitemap: https://codeatejd.com/sitemap.xml
