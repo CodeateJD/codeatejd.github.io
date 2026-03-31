@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImpriRap - Preview B: Bold & Dark</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cyan: #61abeb;
+    --yellow: #faf139;
+    --black: #272425;
+    --magenta: #c90087;
+    --dark: #1a1a1a;
+    --dark2: #222;
+    --dark3: #2a2a2a;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; }
+
+  /* ── NAV ── */
+  nav {
+    background: rgba(26,26,26,0.95);
+    backdrop-filter: blur(10px);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  nav img { height: 44px; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { text-decoration: none; color: rgba(255,255,255,0.6); font-weight: 500; font-size: 14px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 100px 32px 80px;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 0%, rgba(97,171,235,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(201,0,135,0.08) 0%, transparent 50%),
+                var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: conic-gradient(var(--cyan), var(--yellow), var(--magenta), var(--black), var(--cyan));
+    border-radius: 50%;
+    opacity: 0.04;
+    filter: blur(80px);
+  }
+  .hero img { height: 90px; margin-bottom: 24px; position: relative; }
+  .hero h1 {
+    font-size: 56px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    position: relative;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p.slogan {
+    font-size: 20px;
+    color: rgba(255,255,255,0.4);
+    margin: 12px 0 40px;
+    position: relative;
+  }
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn-gradient {
+    background: linear-gradient(135deg, var(--magenta), var(--cyan));
+    color: white;
+    padding: 16px 36px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,0,135,0.4); }
+  .btn-glass {
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    padding: 15px 36px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    background: rgba(255,255,255,0.05);
+    transition: background 0.2s;
+  }
+  .btn-glass:hover { background: rgba(255,255,255,0.1); }
+  .cmyk-strip {
+    display: flex;
+    height: 4px;
+    margin-top: 60px;
+    position: relative;
+  }
+  .cmyk-strip div { flex: 1; }
+
+  /* ── SERVICES ── */
+  .services { padding: 80px 32px; max-width: 1100px; margin: 0 auto; }
+  .section-title { text-align: center; margin-bottom: 56px; }
+  .section-title h2 { font-size: 40px; font-weight: 900; letter-spacing: -1px; }
+  .section-title p { color: rgba(255,255,255,0.4); font-size: 16px; margin-top: 8px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .service-card {
+    background: var(--dark2);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.2s, border-color 0.3s;
+    text-align: center;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--cyan);
+  }
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 16px;
+    background: var(--dark3);
+  }
+  .service-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .service-card p { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .service-card .price {
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 12px;
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── COTIZADOR ── */
+  .cotizador {
+    padding: 80px 32px;
+    background: var(--dark2);
+  }
+  .cotizador-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--dark);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; color: rgba(255,255,255,0.7); }
+  .form-group select, .form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: var(--dark3);
+    color: white;
+    transition: border-color 0.2s;
+  }
+  .form-group select:focus, .form-group input:focus {
+    outline: none;
+    border-color: var(--cyan);
+  }
+  .cotizador-result {
+    background: linear-gradient(135deg, var(--magenta), var(--cyan));
+    padding: 28px;
+    border-radius: 14px;
+    text-align: center;
+    margin-top: 24px;
+  }
+  .cotizador-result .total { font-size: 40px; font-weight: 900; }
+  .cotizador-result .label { font-size: 13px; opacity: 0.7; margin-bottom: 4px; }
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25D366;
+    color: white;
+    padding: 16px 36px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .btn-whatsapp:hover { transform: translateY(-2px); }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 80px 32px;
+    text-align: center;
+  }
+  .contact h2 { font-size: 36px; font-weight: 900; margin-bottom: 8px; }
+  .contact p { opacity: 0.4; margin-bottom: 32px; }
+  .contact-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .contact-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 28px 40px;
+    text-decoration: none;
+    color: white;
+    transition: border-color 0.3s;
+  }
+  .contact-card:hover { border-color: var(--magenta); }
+  .contact-card .icon { font-size: 32px; margin-bottom: 8px; }
+  .contact-card .label { font-weight: 700; font-size: 15px; }
+  .contact-card small { opacity: 0.4; font-size: 12px; }
+
+  footer {
+    padding: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer a { color: var(--cyan); text-decoration: none; }
+
+  .preview-badge {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, var(--magenta), var(--cyan));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 13px;
+    z-index: 200;
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-badge">PREVIEW B — Bold & Dark</div>
+
+<nav>
+  <img src="img/LOGOSSINFONDO.png" alt="ImpriRap">
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#cotizador">Cotizador</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/584127019514" class="nav-cta">WhatsApp</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="img/LOGOSSINFONDO.png" alt="ImpriRap">
+  <h1>IMPRIRAP</h1>
+  <p class="slogan">Un mundo de colores impresos</p>
+  <div class="hero-buttons">
+    <a href="https://wa.me/584127019514" class="btn-gradient">Cotizar por WhatsApp</a>
+    <a href="#cotizador" class="btn-glass">Calcular precio</a>
+  </div>
+  <div class="cmyk-strip">
+    <div style="background:var(--cyan)"></div>
+    <div style="background:var(--magenta)"></div>
+    <div style="background:var(--yellow)"></div>
+    <div style="background:var(--black)"></div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="section-title">
+    <h2>Nuestros Servicios</h2>
+    <p>Todo lo que necesitas para imprimir, en un solo lugar</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">&#128196;</div>
+      <h3>Copias e Impresiones</h3>
+      <p>Color y B/N, carta y oficio</p>
+      <div class="price">Desde $0.08</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128188;</div>
+      <h3>Tarjetas de Presentacion</h3>
+      <p>Opalina, brillante, matte, laminada</p>
+      <div class="price">Desde $5.00</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128220;</div>
+      <h3>Flyers y Volantes</h3>
+      <p>Bond y fotografico, varios tamanos</p>
+      <div class="price">Desde $5.00</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127991;</div>
+      <h3>Pendones / Banners</h3>
+      <p>13oz, de 40x90 a 80x150cm</p>
+      <div class="price">Desde $13.00</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127915;</div>
+      <h3>Stickers</h3>
+      <p>De 3x3 a 7x7cm, lotes grandes</p>
+      <div class="price">Desde $3.00</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128203;</div>
+      <h3>Talonarios</h3>
+      <p>Facturas, notas de entrega</p>
+      <div class="price">Desde $10.00</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#127942;</div>
+      <h3>Certificados y Diplomas</h3>
+      <p>Opalina, cartulina hilo, fotografico</p>
+      <div class="price">$1.00</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">&#128085;</div>
+      <h3>Franelas y Mas</h3>
+      <p>Estampado, llaveros, toppers</p>
+      <div class="price">Desde $3.00</div>
+    </div>
+  </div>
+</section>
+
+<section class="cotizador" id="cotizador">
+  <div class="section-title">
+    <h2>Cotizador Rapido</h2>
+    <p>Calcula el precio de tu pedido al instante</p>
+  </div>
+  <div class="cotizador-inner">
+    <div class="form-group">
+      <label>Servicio</label>
+      <select>
+        <option>Selecciona un servicio...</option>
+        <option>Copias e Impresiones</option>
+        <option>Tarjetas de Presentacion</option>
+        <option>Flyers y Volantes</option>
+        <option>Pendones / Banners</option>
+        <option>Stickers</option>
+        <option>Talonarios</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tipo / Material</label>
+      <select><option>Selecciona tipo...</option></select>
+    </div>
+    <div class="form-group">
+      <label>Cantidad</label>
+      <input type="number" placeholder="Ej: 100" min="1">
+    </div>
+    <div class="cotizador-result">
+      <div class="label">TOTAL ESTIMADO</div>
+      <div class="total">$0.00</div>
+    </div>
+    <div style="text-align:center">
+      <button class="btn-whatsapp">Enviar pedido por WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <h2>Contactanos</h2>
+  <p>Estamos listos para tu pedido</p>
+  <div class="contact-cards">
+    <a href="https://wa.me/584127019514" class="contact-card">
+      <div class="icon">&#128172;</div>
+      <div class="label">WhatsApp</div>
+      <small>+58 412-7019514</small>
+    </a>
+    <a href="https://instagram.com/imprirap" class="contact-card" target="_blank">
+      <div class="icon">&#128247;</div>
+      <div class="label">Instagram</div>
+      <small>@imprirap</small>
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 ImpriRap, C.A. — RIF: J-504645664<br>
+  Hecho por <a href="https://codeatejd.com" target="_blank">codeatejd.com</a>
+</footer>
+
+</body>
+</html>
