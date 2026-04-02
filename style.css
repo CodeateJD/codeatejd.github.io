@@ -420,91 +420,109 @@ body *, body *::before, body *::after {
 }
 
 /* ══════════ CLIENTS ══════════ */
-.clients-grid {
+/* ── Portfolio ── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+.portfolio-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.portfolio-card:hover {
+  border-color: rgba(102,126,234,0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.portfolio-card:hover::before { opacity: 1; }
+
+.portfolio-card-header {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 14px;
 }
-.client-logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.4s;
-  opacity: 0.6;
-  filter: grayscale(100%);
+.portfolio-status {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
 }
-.client-logo:hover {
-  opacity: 1;
-  filter: grayscale(0%);
-  transform: translateY(-4px);
+.portfolio-status.live {
+  background: rgba(74,222,128,0.12);
+  color: #4ade80;
+  border: 1px solid rgba(74,222,128,0.2);
 }
-.client-logo img {
-  height: 50px;
-  width: auto;
-  max-width: 120px;
-  object-fit: contain;
+.portfolio-status.dev {
+  background: rgba(251,191,36,0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251,191,36,0.2);
 }
-.client-logo img[alt="ImpriRap"] {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.client-logo span {
+.portfolio-year {
   font-size: 12px;
   font-weight: 600;
-  color: #999;
+  color: #64748b;
+  font-family: 'JetBrains Mono', monospace;
 }
-.client-logo:hover span { color: #555; }
-
-/* Custom client icons */
-.client-icon {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
-}
-.client-icon.paramo {
-  width: 50px; height: 50px;
-  background: #C02931;
-  border-radius: 50%;
-}
-.paramo-p {
-  color: #fff;
-  font-size: 26px;
-  font-weight: 900;
-  font-family: 'Inter', sans-serif;
-}
-.client-icon.invupos {
-  font-size: 18px;
-  color: #1a1a1a;
-  font-family: 'Inter', sans-serif;
-}
-.invupos-pos {
-  color: #0066cc;
-  font-weight: 900;
-}
-.client-icon.ranking {
-  flex-direction: column;
-  gap: 0;
-  line-height: 1;
-}
-.ranking-num {
+.portfolio-title {
   font-size: 22px;
-  font-weight: 900;
-  color: #e63946;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
 }
-.ranking-fm {
+.portfolio-desc {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.portfolio-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.portfolio-techs span {
   font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(102,126,234,0.1);
+  color: #667eea;
+  border: 1px solid rgba(102,126,234,0.15);
+  font-family: 'JetBrains Mono', monospace;
+}
+.portfolio-links a {
+  font-size: 13px;
   font-weight: 700;
-  color: #1a1a1a;
-  letter-spacing: 3px;
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-family: 'JetBrains Mono', monospace;
+}
+.portfolio-links a:hover { color: #f093fb; }
+.portfolio-private {
+  font-size: 12px;
+  color: #475569;
+  font-style: italic;
 }
 
 .client-icon.imprirap {
@@ -770,6 +788,8 @@ body *, body *::before, body *::after {
   .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
   .code-body { font-size: 12px; padding: 16px; }
   .contact-cards { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card { padding: 22px; }
 }
 
 /* ══════════ LIGHT MODE ══════════ */
@@ -834,10 +854,12 @@ body.light .tech-pill:hover { background: #bae6fd; border-color: #38bdf8; }
 body.light .code-block { border-color: rgba(0,0,0,0.08); }
 
 /* Clients light */
-body.light .client-logo { opacity: 0.5; filter: grayscale(0%); }
-body.light .client-logo:hover { opacity: 1; }
-body.light .client-logo span { color: #64748b; }
-body.light .client-logo:hover span { color: #0369a1; }
+body.light .portfolio-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+body.light .portfolio-card:hover { border-color: rgba(102,126,234,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+body.light .portfolio-title { color: #1a1a1a; }
+body.light .portfolio-desc { color: #475569; }
+body.light .portfolio-techs span { background: rgba(102,126,234,0.08); color: #4f46e5; border-color: rgba(102,126,234,0.12); }
+body.light .portfolio-year { color: #94a3b8; }
 
 /* Process light */
 body.light .section-dark h3 { color: #1a1a1a; }

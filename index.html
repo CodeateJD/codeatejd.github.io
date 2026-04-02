@@ -66,7 +66,7 @@
     <a href="#" class="nav-logo"><span class="nav-codeate">codeate</span><span class="nav-jd-terminal"><span class="terminal-prompt">&gt;</span>JD</span></a>
     <div class="nav-links">
       <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
-      <a href="#clients" data-es="Aliados Comerciales" data-en="Partners">Aliados Comerciales</a>
+      <a href="#portfolio" data-es="Proyectos" data-en="Projects">Proyectos</a>
       <a href="#tech" data-es="Tecnologías" data-en="Tech Stack">Tecnologías</a>
       <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
       <button class="lang-toggle" id="langToggle" title="Switch language">EN</button>
@@ -220,38 +220,105 @@
   </div>
 </section>
 
-<!-- ══════════ CLIENTS ══════════ -->
-<section class="section section-light" id="clients">
+<!-- ══════════ PORTFOLIO ══════════ -->
+<section class="section section-dark" id="portfolio">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-tag" data-es="Confían en nosotros" data-en="They trust us">Confían en nosotros</span>
-      <h2 data-es="Aliados Comerciales" data-en="Partners">Aliados Comerciales</h2>
+      <span class="section-tag" data-es="Proyectos reales" data-en="Real projects">Proyectos reales</span>
+      <h2 data-es="Portafolio" data-en="Portfolio">Portafolio</h2>
     </div>
-    <div class="clients-grid reveal">
-      <div class="client-logo" title="Páramo Café">
-        <img src="img/paramo.png" alt="Páramo Café" loading="lazy">
-        <span>Páramo Café</span>
+    <div class="portfolio-grid reveal">
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <span class="portfolio-status live">En producción</span>
+          <span class="portfolio-year">2026</span>
+        </div>
+        <h3 class="portfolio-title">Video Brander</h3>
+        <p class="portfolio-desc" data-es="Herramienta web que agrega marca de agua a videos directo en el navegador. Sin servidores, sin instalar nada. FFmpeg.wasm + Canvas API." data-en="Web tool that adds watermarks to videos directly in the browser. No servers, no installs. FFmpeg.wasm + Canvas API.">Herramienta web que agrega marca de agua a videos directo en el navegador. Sin servidores, sin instalar nada. FFmpeg.wasm + Canvas API.</p>
+        <div class="portfolio-techs">
+          <span>JavaScript</span><span>FFmpeg.wasm</span><span>Canvas API</span><span>GitHub Pages</span>
+        </div>
+        <div class="portfolio-links">
+          <a href="https://codeatejd.com/creator/video-brander/" target="_blank" rel="noopener" data-es="Ver herramienta" data-en="View tool">Ver herramienta &rarr;</a>
+        </div>
       </div>
-      <div class="client-logo" title="SimplitPos">
-        <img src="https://simplitpos.com/wp-content/uploads/2021/03/LOGO-HEADER.png" alt="SimplitPos" loading="lazy">
-        <span>SimplitPos</span>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <span class="portfolio-status live">En producción</span>
+          <span class="portfolio-year">2026</span>
+        </div>
+        <h3 class="portfolio-title">Post Generator</h3>
+        <p class="portfolio-desc" data-es="Generador de imágenes para Instagram y Facebook. 7 plantillas, 12 paletas, avatares SVG, caption + hashtags automáticos. Todo en el navegador." data-en="Image generator for Instagram and Facebook. 7 templates, 12 palettes, SVG avatars, auto caption + hashtags. All in the browser.">Generador de imágenes para Instagram y Facebook. 7 plantillas, 12 paletas, avatares SVG, caption + hashtags automáticos. Todo en el navegador.</p>
+        <div class="portfolio-techs">
+          <span>JavaScript</span><span>html2canvas</span><span>SVG</span><span>CSS Grid</span>
+        </div>
+        <div class="portfolio-links">
+          <a href="https://codeatejd.com/creator/generator/" target="_blank" rel="noopener" data-es="Ver herramienta" data-en="View tool">Ver herramienta &rarr;</a>
+        </div>
       </div>
-      <div class="client-logo" title="InvuPOS">
-        <img src="https://invupos.com/logo192.png" alt="InvuPOS" loading="lazy">
-        <span>InvuPOS</span>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <span class="portfolio-status live">En producción</span>
+          <span class="portfolio-year">2025</span>
+        </div>
+        <h3 class="portfolio-title">Simple Report</h3>
+        <p class="portfolio-desc" data-es="Reporteador web empresarial con export a Excel agrupado, filtros avanzados y dashboard en tiempo real para cadena de restaurantes." data-en="Enterprise web reporter with grouped Excel export, advanced filters and real-time dashboard for restaurant chain.">Reporteador web empresarial con export a Excel agrupado, filtros avanzados y dashboard en tiempo real para cadena de restaurantes.</p>
+        <div class="portfolio-techs">
+          <span>Node.js</span><span>Express</span><span>SQL Server</span><span>ExcelJS</span>
+        </div>
+        <div class="portfolio-links">
+          <span class="portfolio-private" data-es="Proyecto privado" data-en="Private project">Proyecto privado</span>
+        </div>
       </div>
-      <div class="client-logo" title="Ranking FM 100.7">
-        <img src="img/ranking.png" alt="Ranking 100.7 FM" loading="lazy">
-        <span>Ranking FM</span>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <span class="portfolio-status dev">En desarrollo</span>
+          <span class="portfolio-year">2026</span>
+        </div>
+        <h3 class="portfolio-title">Páramo Café</h3>
+        <p class="portfolio-desc" data-es="App de fidelización con sistema de puntos, tiers, pedidos online y sincronización con POS para cafetería en Caracas." data-en="Loyalty app with points system, tiers, online orders and POS sync for a café in Caracas.">App de fidelización con sistema de puntos, tiers, pedidos online y sincronización con POS para cafetería en Caracas.</p>
+        <div class="portfolio-techs">
+          <span>Flutter</span><span>Firebase</span><span>Riverpod</span><span>Cloud Functions</span>
+        </div>
+        <div class="portfolio-links">
+          <span class="portfolio-private" data-es="En desarrollo" data-en="In development">En desarrollo</span>
+        </div>
       </div>
-      <div class="client-logo" title="ICG Software">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Logo_ICG_Software.svg" alt="ICG Software" loading="lazy">
-        <span>ICG</span>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <span class="portfolio-status live">En producción</span>
+          <span class="portfolio-year">2025</span>
+        </div>
+        <h3 class="portfolio-title">ImpriRap</h3>
+        <p class="portfolio-desc" data-es="Cotizador web interactivo para empresa de impresión y serigrafía. Cálculo automático por tipo de trabajo, cantidad y material." data-en="Interactive web quote builder for printing company. Auto-calculation by job type, quantity and material.">Cotizador web interactivo para empresa de impresión y serigrafía. Cálculo automático por tipo de trabajo, cantidad y material.</p>
+        <div class="portfolio-techs">
+          <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive</span>
+        </div>
+        <div class="portfolio-links">
+          <span class="portfolio-private" data-es="Proyecto privado" data-en="Private project">Proyecto privado</span>
+        </div>
       </div>
-      <div class="client-logo" title="ImpriRap">
-        <img src="img/Logo ImpriRap.jpeg" alt="ImpriRap" loading="lazy">
-        <span>ImpriRap</span>
+
+      <div class="portfolio-card">
+        <div class="portfolio-card-header">
+          <span class="portfolio-status live">En producción</span>
+          <span class="portfolio-year">2026</span>
+        </div>
+        <h3 class="portfolio-title">codeatejd.com</h3>
+        <p class="portfolio-desc" data-es="Este mismo sitio. Landing page con modo oscuro/claro, bilingüe, animaciones CSS, SEO optimizado y 100% código propio — cero frameworks." data-en="This very site. Landing page with dark/light mode, bilingual, CSS animations, SEO optimized and 100% custom code — zero frameworks.">Este mismo sitio. Landing page con modo oscuro/claro, bilingüe, animaciones CSS, SEO optimizado y 100% código propio — cero frameworks.</p>
+        <div class="portfolio-techs">
+          <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>GitHub Pages</span>
+        </div>
+        <div class="portfolio-links">
+          <a href="https://github.com/jdelpino78/codeateJD" target="_blank" rel="noopener" data-es="Ver código" data-en="View code">Ver código &rarr;</a>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -353,8 +420,7 @@
 <!-- Mobile menu overlay -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
-  <a href="#clients" data-es="Aliados Comerciales" data-en="Partners">Aliados Comerciales</a>
-  <a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a>
+  <a href="#portfolio" data-es="Proyectos" data-en="Projects">Proyectos</a>
   <a href="#tech" data-es="Tecnologías" data-en="Tech Stack">Tecnologías</a>
   <a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a>
 </div>
