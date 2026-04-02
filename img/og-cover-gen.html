@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  body { background: #f0f0f0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 20px; font-family: sans-serif; }
+  #cover {
+    width: 1200px; height: 630px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle grid pattern */
+  #cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 24px;
+  }
+  .logo-icon {
+    width: 100px; height: 100px;
+    background: #1a1a1a;
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    border: 1px solid rgba(74,222,128,0.15);
+  }
+  .gt { color: #4ade80; font-family: 'JetBrains Mono', monospace; font-size: 36px; font-weight: 500; margin-right: 2px; }
+  .jd { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 44px; font-weight: 900; letter-spacing: -2px; }
+  .brand {
+    display: flex; align-items: baseline; justify-content: center; gap: 0;
+    margin-bottom: 20px;
+  }
+  .brand-codeate {
+    font-family: 'Inter', sans-serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 1px;
+  }
+  .brand-jd-wrap {
+    display: inline-flex;
+    align-items: center;
+    background: #1a1a1a;
+    border-radius: 14px;
+    padding: 8px 18px;
+    margin-left: 8px;
+    border: 1px solid rgba(74,222,128,0.2);
+  }
+  .brand-gt { color: #4ade80; font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 500; margin-right: 4px; }
+  .brand-jd { color: #fff; font-family: 'Inter', sans-serif; font-size: 56px; font-weight: 900; }
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .url {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: rgba(74,222,128,0.4);
+  }
+  button { padding: 14px 40px; font-size: 16px; font-weight: 700; border: none; background: #4ade80; color: #0f172a; border-radius: 12px; cursor: pointer; }
+</style>
+</head>
+<body>
+  <div id="cover">
+    <div class="content">
+      <div class="brand">
+        <span class="brand-codeate">codeate</span>
+        <span class="brand-jd-wrap">
+          <span class="brand-gt">></span><span class="brand-jd">JD</span>
+        </span>
+      </div>
+      <div class="tagline">Desarrollo Web &bull; Apps &bull; IT</div>
+    </div>
+    <div class="url">codeatejd.com</div>
+  </div>
+  <button onclick="download()">Descargar og-cover.png</button>
+  <script>
+    async function download() {
+      const el = document.getElementById('cover');
+      const canvas = await html2canvas(el, { scale: 1, backgroundColor: null });
+      const link = document.createElement('a');
+      link.download = 'og-cover.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
