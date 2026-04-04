@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="oceanbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="100%" stop-color="#042f2e"/>
+    </linearGradient>
+    <linearGradient id="oceanline" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#oceanbg)"/>
+  <rect x="32" y="372" width="336" height="4" rx="2" fill="url(#oceanline)" opacity="0.8"/>
+  <text x="200" y="145" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="52" font-weight="600" fill="#22d3ee" letter-spacing="1">codeate</text>
+  <text x="200" y="280" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="140" font-weight="900"><tspan fill="#2dd4bf">&gt;</tspan><tspan fill="#ffffff">JD</tspan></text>
+</svg>

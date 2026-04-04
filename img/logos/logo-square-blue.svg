@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bluebg" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0f1b2d"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f5576c"/>
+      <stop offset="100%" stop-color="#667eea"/>
+    </linearGradient>
+  </defs>
+  <!-- Fondo azul terminal -->
+  <rect width="400" height="400" fill="url(#bluebg)"/>
+  <!-- Barra de titulo terminal -->
+  <rect width="400" height="36" fill="#0d1520"/>
+  <circle cx="24" cy="18" r="6" fill="#f5576c" opacity="0.9"/>
+  <circle cx="44" cy="18" r="6" fill="#fbbf24" opacity="0.9"/>
+  <circle cx="64" cy="18" r="6" fill="#4ade80" opacity="0.9"/>
+  <!-- Linea accent abajo -->
+  <rect x="32" y="372" width="336" height="4" rx="2" fill="url(#accent)" opacity="0.7"/>
+  <!-- codeate arriba -->
+  <text x="200" y="165" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="52" font-weight="600" fill="#f5576c" letter-spacing="1">codeate</text>
+  <!-- >JD abajo grande -->
+  <text x="200" y="300" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="140" font-weight="900"><tspan fill="#4ade80">&gt;</tspan><tspan fill="#ffffff">JD</tspan></text>
+</svg>

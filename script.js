@@ -143,6 +143,13 @@ document.querySelectorAll('a[href^="#"]').forEach((a) =>
   })
 );
 
+// ══════════ TECH SLIDER INFINITE LOOP ══════════
+const techTrack = document.querySelector('.tech-track');
+if (techTrack) {
+  const cards = [...techTrack.children];
+  cards.forEach(card => techTrack.appendChild(card.cloneNode(true)));
+}
+
 // ══════════ PARALLAX CODE FLOATS ══════════
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;

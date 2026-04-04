@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="greenbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#052e16"/>
+      <stop offset="100%" stop-color="#020a04"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#greenbg)"/>
+  <!-- Glow effect line -->
+  <rect x="32" y="372" width="336" height="4" rx="2" fill="#4ade80" opacity="0.6"/>
+  <rect x="60" y="373" width="280" height="2" rx="1" fill="#4ade80" opacity="0.3"/>
+  <!-- codeate en verde claro -->
+  <text x="200" y="145" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="52" font-weight="600" fill="#86efac" letter-spacing="1">codeate</text>
+  <!-- >JD estilo matrix -->
+  <text x="200" y="280" text-anchor="middle" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="140" font-weight="900"><tspan fill="#4ade80">&gt;</tspan><tspan fill="#f0fdf4">JD</tspan></text>
+</svg>

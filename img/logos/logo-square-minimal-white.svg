@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Fondo blanco, minimalista -->
+  <rect width="400" height="400" fill="#fafafa"/>
+  <rect x="32" y="372" width="336" height="4" rx="2" fill="#111111" opacity="0.15"/>
+  <text x="200" y="145" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="52" font-weight="600" fill="#6b7280" letter-spacing="1">codeate</text>
+  <text x="200" y="280" text-anchor="middle" font-family="'Inter', 'Arial', sans-serif" font-size="140" font-weight="900"><tspan fill="#111827">&gt;</tspan><tspan fill="#111827">JD</tspan></text>
+</svg>
