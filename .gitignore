@@ -1,0 +1,6 @@
+node_modules/
+tools/
+memories/
+img/logo_gen.html
+img/portfolio/
+resize-images.js
