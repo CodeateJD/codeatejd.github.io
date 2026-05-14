@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta para su imprenta — codeateJD</title>
+<meta name="description" content="Lleve su imprenta al siguiente nivel. Web profesional, cotizador automático y pedidos directos por WhatsApp. Propuesta detallada por codeateJD.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #F5F7FA;
+  color: #111827;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* ══════════ NAV ══════════ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 14px 0;
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-size: 18px; font-weight: 700;
+  text-decoration: none; letter-spacing: -0.3px;
+  color: #111827;
+  display: inline-flex; align-items: center; flex-wrap: wrap;
+}
+.nav-codeate { color: #111827; font-weight: 500; }
+.nav-jd { color: #2563EB; font-weight: 800; margin-left: 2px; }
+.nav-divider { color: #D1D5DB; margin: 0 12px; font-weight: 300; }
+.nav-product { color: #6B7280; font-size: 14px; font-weight: 500; }
+.nav-back {
+  color: #6B7280; text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: #2563EB; }
+
+/* ══════════ CONTAINERS ══════════ */
+.container {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 24px;
+}
+.section { padding: 70px 0; }
+.section-light { background: #FFFFFF; }
+
+/* ══════════ HERO ══════════ */
+.hero {
+  padding: 70px 24px 50px;
+  text-align: center;
+  max-width: 1100px; margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #DBEAFE;
+  border: 1px solid #93C5FD;
+  color: #1E40AF;
+  font-size: 12px; font-weight: 700;
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 22px;
+  letter-spacing: 0.5px;
+}
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #2563EB;
+}
+.hero h1 {
+  font-size: clamp(34px, 5.5vw, 56px);
+  font-weight: 800; letter-spacing: -1.5px;
+  margin-bottom: 18px; line-height: 1.05;
+  color: #111827;
+}
+.hero h1 .accent { color: #2563EB; }
+.hero p.lead {
+  color: #4B5563;
+  font-size: clamp(16px, 1.8vw, 19px);
+  max-width: 660px; margin: 0 auto 32px;
+  line-height: 1.55;
+}
+.hero-ctas {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-weight: 600; font-size: 15px;
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid transparent;
+}
+.btn-primary {
+  background: #2563EB;
+  color: #FFFFFF;
+}
+.btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); }
+.btn-outline {
+  background: #FFFFFF;
+  color: #111827;
+  border: 2px solid #E5E7EB;
+}
+.btn-outline:hover { border-color: #2563EB; color: #2563EB; }
+.btn-wa {
+  background: #25D366;
+  color: #FFFFFF;
+}
+.btn-wa:hover { background: #1FB855; transform: translateY(-1px); }
+.btn-orange {
+  background: #F97316;
+  color: #FFFFFF;
+}
+.btn-orange:hover { background: #EA580C; }
+
+/* ══════════ SECTION HEADERS ══════════ */
+.section-tag {
+  display: inline-block;
+  font-size: 12px; font-weight: 700;
+  color: #2563EB;
+  background: #DBEAFE;
+  padding: 4px 12px; border-radius: 999px;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800; letter-spacing: -0.8px;
+  color: #111827;
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  color: #6B7280;
+  font-size: 16px;
+  max-width: 620px;
+  line-height: 1.55;
+}
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header .section-subtitle { margin: 0 auto; }
+
+/* ══════════ PROBLEM SECTION ══════════ */
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 800px) { .problem-grid { grid-template-columns: 1fr; } }
+
+.problem-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 26px;
+}
+.problem-icon {
+  width: 44px; height: 44px;
+  background: #FEE2E2;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+.problem-card h3 {
+  font-size: 17px; font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+.problem-card p {
+  color: #6B7280;
+  font-size: 14px; line-height: 1.55;
+}
+
+/* ══════════ SOLUTION SECTION ══════════ */
+.solution-flow {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 18px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: center;
+  position: relative;
+}
+@media (max-width: 800px) { .solution-flow { grid-template-columns: 1fr; padding: 28px; } }
+
+.flow-step {
+  text-align: center;
+}
+.flow-icon {
+  width: 56px; height: 56px;
+  background: #2563EB;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  color: #FFFFFF;
+  margin: 0 auto 12px;
+}
+.flow-step:nth-child(3) .flow-icon { background: #F97316; }
+.flow-step:nth-child(5) .flow-icon { background: #25D366; }
+.flow-step:nth-child(7) .flow-icon { background: #16A34A; }
+
+.flow-step h4 {
+  font-size: 14px; font-weight: 700;
+  color: #111827; margin-bottom: 4px;
+}
+.flow-step p {
+  font-size: 12px; color: #6B7280;
+}
+.flow-arrow {
+  text-align: center;
+  color: #D1D5DB;
+  font-size: 24px;
+  font-weight: 300;
+}
+@media (max-width: 800px) {
+  .flow-arrow { transform: rotate(90deg); }
+}
+
+/* ══════════ DEMO HIGHLIGHT ══════════ */
+.demo-highlight {
+  background: #111827;
+  border-radius: 22px;
+  padding: 50px;
+  text-align: center;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+.demo-highlight::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 400px; height: 400px;
+  background: #F97316;
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(80px);
+}
+.demo-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(249,115,22,0.15);
+  border: 1px solid rgba(249,115,22,0.4);
+  color: #FB923C;
+  font-size: 12px; font-weight: 700;
+  padding: 5px 14px; border-radius: 999px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  position: relative; z-index: 1;
+}
+.demo-highlight h2 {
+  font-size: clamp(24px, 3.5vw, 34px);
+  font-weight: 800; letter-spacing: -0.8px;
+  margin-bottom: 12px;
+  position: relative; z-index: 1;
+}
+.demo-highlight p {
+  color: rgba(255,255,255,0.7);
+  max-width: 560px; margin: 0 auto 28px;
+  font-size: 16px; line-height: 1.55;
+  position: relative; z-index: 1;
+}
+.demo-highlight .btn { position: relative; z-index: 1; }
+
+/* ══════════ TIERS ══════════ */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
+
+.tier {
+  background: #FFFFFF;
+  border: 2px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 30px 26px;
+  position: relative;
+}
+.tier.featured {
+  border-color: #2563EB;
+  transform: scale(1.02);
+  box-shadow: 0 10px 40px rgba(37,99,235,0.12);
+}
+@media (max-width: 900px) { .tier.featured { transform: none; } }
+
+.tier-recommended {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: #2563EB;
+  color: #FFFFFF;
+  font-size: 11px; font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+  letter-spacing: 0.8px;
+}
+.tier-name {
+  font-size: 13px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #6B7280;
+  margin-bottom: 8px;
+}
+.tier-tagline {
+  color: #4B5563; font-size: 14px;
+  margin-bottom: 18px; line-height: 1.4;
+}
+.tier-price {
+  display: flex; align-items: baseline; gap: 4px;
+  margin-bottom: 22px;
+}
+.tier-price-amount {
+  font-size: 42px; font-weight: 800;
+  color: #111827;
+  letter-spacing: -1px;
+}
+.tier-price-currency {
+  font-size: 15px; font-weight: 600;
+  color: #6B7280;
+}
+.tier-features {
+  list-style: none;
+  margin-bottom: 24px;
+}
+.tier-features li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 7px 0;
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.tier-check {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  background: #DCFCE7;
+  color: #16A34A;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  margin-top: 1px;
+}
+.tier-divider {
+  border-top: 1px dashed #E5E7EB;
+  margin: 6px 0;
+}
+.tier-divider-label {
+  font-size: 11px; font-weight: 700;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 6px 0;
+}
+.tier-time {
+  font-size: 12px;
+  color: #6B7280;
+  text-align: center;
+  padding-top: 14px;
+  border-top: 1px solid #F3F4F6;
+}
+.tier-time strong { color: #111827; }
+.tier .btn { width: 100%; justify-content: center; }
+
+/* ══════════ BENEFITS ══════════ */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 700px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+.benefit-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.benefit-icon {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  background: #EFF6FF;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.benefit-card h4 {
+  font-size: 16px; font-weight: 700;
+  color: #111827;
+  margin-bottom: 5px;
+}
+.benefit-card p {
+  color: #6B7280;
+  font-size: 14px; line-height: 1.5;
+}
+
+/* ══════════ BONUS ══════════ */
+.bonus-card {
+  background: #F97316;
+  color: #FFFFFF;
+  border-radius: 18px;
+  padding: 36px 30px;
+  display: flex; align-items: center; gap: 24px;
+}
+@media (max-width: 700px) { .bonus-card { flex-direction: column; text-align: center; } }
+
+.bonus-icon {
+  width: 70px; height: 70px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 38px;
+  flex-shrink: 0;
+}
+.bonus-content h3 {
+  font-size: 20px; font-weight: 800;
+  margin-bottom: 4px;
+}
+.bonus-content p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.5;
+}
+.bonus-tag {
+  display: inline-block;
+  background: rgba(0,0,0,0.2);
+  color: #FFFFFF;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ══════════ TERMS ══════════ */
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 800px) { .terms-grid { grid-template-columns: 1fr; } }
+
+.term-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 24px;
+}
+.term-card h4 {
+  font-size: 15px; font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.term-card h4::before {
+  content: '✓';
+  width: 22px; height: 22px;
+  background: #2563EB;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+}
+.term-card p, .term-card li {
+  color: #4B5563;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.term-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+.term-card li {
+  padding: 3px 0;
+}
+.term-card li::before {
+  content: '•';
+  color: #2563EB;
+  margin-right: 6px;
+  font-weight: 700;
+}
+
+/* ══════════ FINAL CTA ══════════ */
+.cta-final {
+  background: #111827;
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 56px 30px;
+  text-align: center;
+}
+.cta-final h2 {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 800; letter-spacing: -0.8px;
+  margin-bottom: 14px;
+}
+.cta-final p {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  max-width: 540px;
+  margin: 0 auto 28px;
+  line-height: 1.55;
+}
+
+/* ══════════ FOOTER ══════════ */
+.footer {
+  border-top: 1px solid #E5E7EB;
+  background: #FFFFFF;
+  padding: 30px 24px;
+  text-align: center;
+  color: #6B7280;
+  font-size: 13px;
+}
+.footer a { color: #2563EB; text-decoration: none; font-weight: 500; }
+.footer a:hover { text-decoration: underline; }
+
+/* ══════════ HIGHLIGHTS ══════════ */
+.kw {
+  background: #FEF3C7;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #92400E;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-codeate">codeate</span><span class="nav-jd">JD</span>
+      <span class="nav-divider">/</span>
+      <span class="nav-product">Propuesta para imprentas</span>
+    </a>
+    <a href="/" class="nav-back">← Volver</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    <span>PROPUESTA COMERCIAL</span>
+  </div>
+  <h1>
+    Lleve su imprenta<br>
+    <span class="accent">al siguiente nivel</span>
+  </h1>
+  <p class="lead">
+    Una web profesional, un cotizador automático que trabaja 24/7 y los pedidos llegando directo a su WhatsApp. La diferencia entre <strong>esperar clientes</strong> y <strong>atraerlos</strong>.
+  </p>
+  <div class="hero-ctas">
+    <a href="/cotizador-imprenta/" class="btn btn-primary">
+      🚀 Probar el cotizador en vivo
+    </a>
+    <a href="#planes" class="btn btn-outline">
+      Ver planes y precios
+    </a>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">EL DESAFÍO</span>
+      <h2 class="section-title">El mercado cambió después de 2020</h2>
+      <p class="section-subtitle">
+        Los clientes que antes pasaban por su local ahora mandan el arte por WhatsApp y piden cotización online. Si su negocio no está en internet, lo eligen a otros.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📵</div>
+        <h3>Clientes fuera de horario</h3>
+        <p>Sábados en la noche, domingos, feriados. Cuando usted no está, el pedido se va a la competencia que sí responde.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⏱️</div>
+        <h3>Cotizar consume horas</h3>
+        <p>Cada cliente pregunta "¿cuánto cuestan 1000 tarjetas?". Responder manual a cada uno es tiempo perdido.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔍</div>
+        <h3>Invisibles en Google</h3>
+        <p>Cuando alguien busca "imprenta en Caracas" aparecen otros. Sin presencia online, no le ven, no le encuentran.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">LA SOLUCIÓN</span>
+      <h2 class="section-title">Un sistema que trabaja por usted</h2>
+      <p class="section-subtitle">
+        Su cliente entra a la web, cotiza solo, manda el pedido por WhatsApp. Usted solo confirma e imprime.
+      </p>
+    </div>
+
+    <div class="solution-flow">
+      <div class="flow-step">
+        <div class="flow-icon">🌐</div>
+        <h4>Cliente entra</h4>
+        <p>Encuentra su web en Google</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">🧮</div>
+        <h4>Cotiza solo</h4>
+        <p>Elige producto y cantidad</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">💬</div>
+        <h4>Envía pedido</h4>
+        <p>Llega a su WhatsApp armado</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">✅</div>
+        <h4>Usted imprime</h4>
+        <p>Solo confirma y produce</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO HIGHLIGHT -->
+<section class="section">
+  <div class="container">
+    <div class="demo-highlight">
+      <div class="demo-badge">
+        <span>🔥 VEA EL COTIZADOR EN VIVO</span>
+      </div>
+      <h2>Pruébelo ahora desde su celular</h2>
+      <p>
+        El cotizador no es una promesa, ya está funcionando. Ábralo, elija un producto, ajuste las cantidades y vea el precio cambiar en tiempo real. <strong>Esto es exactamente lo que tendrán sus clientes.</strong>
+      </p>
+      <a href="/cotizador-imprenta/" class="btn btn-orange" target="_blank">
+        Abrir cotizador en vivo →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="section section-light" id="planes">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">INVERSIÓN</span>
+      <h2 class="section-title">Tres planes según su momento</h2>
+      <p class="section-subtitle">
+        Empiece por donde se ajuste a su realidad. Todos los planes son escalables — puede arrancar con el Esencial y subir cuando lo necesite.
+      </p>
+    </div>
+
+    <div class="tiers">
+
+      <!-- ESENCIAL -->
+      <div class="tier">
+        <div class="tier-name">🥉 Esencial</div>
+        <div class="tier-tagline">Para arrancar con presencia profesional</div>
+        <div class="tier-price">
+          <span class="tier-price-amount">$300</span>
+          <span class="tier-price-currency">USD</span>
+        </div>
+        <ul class="tier-features">
+          <li><span class="tier-check">✓</span>Sitio web de 1 página (landing)</li>
+          <li><span class="tier-check">✓</span>Catálogo visual de servicios</li>
+          <li><span class="tier-check">✓</span>Galería de trabajos realizados</li>
+          <li><span class="tier-check">✓</span>Botón directo a WhatsApp en cada sección</li>
+          <li><span class="tier-check">✓</span>Optimizado para celular</li>
+          <li><span class="tier-check">✓</span>Formulario de contacto</li>
+        </ul>
+        <div class="tier-time">⏱️ Entrega: <strong>7-10 días</strong></div>
+      </div>
+
+      <!-- PROFESIONAL -->
+      <div class="tier featured">
+        <div class="tier-recommended">★ EL MÁS PEDIDO</div>
+        <div class="tier-name">🥈 Profesional</div>
+        <div class="tier-tagline">Para vender en serio y ahorrar tiempo</div>
+        <div class="tier-price">
+          <span class="tier-price-amount">$550</span>
+          <span class="tier-price-currency">USD</span>
+        </div>
+        <ul class="tier-features">
+          <li><span class="tier-check">✓</span><strong>Todo lo del Plan Esencial</strong></li>
+          <li><span class="tier-check">✓</span><span class="kw">Cotizador automático</span> (cliente elige producto, cantidad, medidas → precio al instante)</li>
+          <li><span class="tier-check">✓</span>Página dedicada por cada servicio</li>
+          <li><span class="tier-check">✓</span>SEO local: "imprenta en Caracas"</li>
+          <li><span class="tier-check">✓</span>Integración con Google Maps</li>
+          <li><span class="tier-check">✓</span>Estadísticas de visitas</li>
+        </ul>
+        <div class="tier-time">⏱️ Entrega: <strong>15-20 días</strong></div>
+      </div>
+
+      <!-- COMPLETO -->
+      <div class="tier">
+        <div class="tier-name">🥇 Completo</div>
+        <div class="tier-tagline">Para escalar y automatizar pedidos</div>
+        <div class="tier-price">
+          <span class="tier-price-amount">$850</span>
+          <span class="tier-price-currency">USD</span>
+        </div>
+        <ul class="tier-features">
+          <li><span class="tier-check">✓</span><strong>Todo lo del Plan Profesional</strong></li>
+          <li><span class="tier-check">✓</span>Panel de administración de pedidos</li>
+          <li><span class="tier-check">✓</span>Carga de arte por el cliente (sube su diseño desde la web)</li>
+          <li><span class="tier-check">✓</span>Sistema de seguimiento de pedidos</li>
+          <li><span class="tier-check">✓</span>Blog para posicionamiento SEO</li>
+          <li><span class="tier-check">✓</span>1 mes de soporte y ajustes incluidos</li>
+        </ul>
+        <div class="tier-time">⏱️ Entrega: <strong>25-30 días</strong></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">POR QUÉ CODEATEJD</span>
+      <h2 class="section-title">No somos una agencia más</h2>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🎨</div>
+        <div>
+          <h4>Diseño 100% personalizado</h4>
+          <p>Su web se hace pensada para su marca, sus servicios y sus clientes. <strong>Nada de plantillas WordPress</strong> que se ven igual que las de los demás.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <div>
+          <h4>Rápida y segura</h4>
+          <p>Código a medida, sin plugins que se rompen con cada actualización. Carga en menos de 2 segundos y protegida contra ataques.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🎓</div>
+        <div>
+          <h4>Capacitación incluida</h4>
+          <p>Le enseñamos a manejar su web: ver estadísticas, responder consultas, gestionar contenido. <strong>Sin depender de nadie</strong> para cambios básicos.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📱</div>
+        <div>
+          <h4>Atención directa por WhatsApp</h4>
+          <p>Habla directo conmigo, no con call centers ni agencias intermediarias. Respuesta rápida y sin vueltas.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🛡️</div>
+        <div>
+          <h4>Garantía 30 días</h4>
+          <p>Si algo no funciona como acordamos, lo corregimos sin costo durante el primer mes post-entrega.</p>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🔄</div>
+        <div>
+          <h4>2 rondas de cambios</h4>
+          <p>Incluidas en todos los planes. Le mostramos un primer mockup, ajustamos, otro mockup, ajustamos. Luego construimos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<section class="section section-light">
+  <div class="container">
+    <div class="bonus-card">
+      <div class="bonus-icon">🎁</div>
+      <div class="bonus-content">
+        <h3>Bonus de arranque esta semana</h3>
+        <p>Si confirmamos antes del viernes, <strong>dominio .com gratis el primer año</strong> (valor $15 USD). Para que su web tenga nombre propio desde el día 1.</p>
+        <span class="bonus-tag">⚡ VALIDEZ: 7 DÍAS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">TÉRMINOS</span>
+      <h2 class="section-title">Transparencia total</h2>
+      <p class="section-subtitle">
+        Cómo trabajamos, cómo se paga, qué incluye. Sin sorpresas.
+      </p>
+    </div>
+
+    <div class="terms-grid">
+      <div class="term-card">
+        <h4>Forma de pago</h4>
+        <ul>
+          <li><strong>50%</strong> al iniciar</li>
+          <li><strong>25%</strong> al aprobar mockup</li>
+          <li><strong>25%</strong> al entregar</li>
+        </ul>
+        <p style="margin-top: 10px; font-size: 13px;">
+          Aceptamos <strong>Binance USDT (TRC-20)</strong>, <strong>Zinli</strong> o transferencia en bolívares.
+        </p>
+      </div>
+
+      <div class="term-card">
+        <h4>Cambios y revisiones</h4>
+        <ul>
+          <li><strong>2 rondas</strong> de cambios incluidas en cada etapa</li>
+          <li>Cambios adicionales: <strong>$30 USD</strong> c/u</li>
+          <li>Cambios mayores de scope se cotizan aparte</li>
+        </ul>
+      </div>
+
+      <div class="term-card">
+        <h4>Garantía y soporte</h4>
+        <ul>
+          <li><strong>30 días</strong> de garantía post-entrega</li>
+          <li>Corrección de bugs sin costo</li>
+          <li>Plan Completo: <strong>1 mes</strong> de soporte adicional</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section">
+  <div class="container">
+    <div class="cta-final">
+      <h2>Listo para arrancar?</h2>
+      <p>
+        Decida qué plan se ajusta a su momento y comencemos. Cualquier duda, hablemos directo.
+      </p>
+      <a href="https://wa.me/584149144103?text=Hola!%20Vi%20la%20propuesta%20y%20me%20interesa%20arrancar." class="btn btn-wa" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Hablemos por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>
+    Propuesta preparada por <a href="/">codeateJD</a> · Soluciones digitales a medida · Caracas, Venezuela
+  </p>
+</footer>
+
+</body>
+</html>
