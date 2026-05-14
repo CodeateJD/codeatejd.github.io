@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizador Imprenta — codeateJD</title>
+<meta name="description" content="Cotice tarjetas, volantes, gigantografías y sellos en segundos. Cotizador automático de imprenta por codeateJD.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #0a0a0f;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(102,126,234,0.15), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(240,147,251,0.12), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(118,75,162,0.08), transparent 60%);
+}
+
+/* ══════════ NAV ══════════ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 14px 0;
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 500;
+  text-decoration: none; letter-spacing: -0.5px;
+  display: inline-flex; align-items: center;
+}
+.nav-codeate {
+  background: linear-gradient(90deg, #f093fb, #f5576c, #ffd200, #4facfe, #43e97b, #667eea);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: colorShift 6s ease-in-out infinite;
+  font-weight: 500;
+}
+.nav-jd-terminal {
+  background: #111; color: #fff;
+  font-weight: 800; padding: 2px 8px 3px;
+  border-radius: 6px; margin-left: 3px; font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.terminal-prompt { color: #43e97b; margin-right: 2px; }
+@keyframes colorShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.nav-back {
+  color: rgba(255,255,255,0.6); text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.3s;
+}
+.nav-back:hover { color: #fff; }
+
+/* ══════════ HEADER ══════════ */
+.header {
+  max-width: 1100px; margin: 0 auto;
+  padding: 64px 24px 32px;
+  text-align: center;
+}
+.header-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(67,233,123,0.08);
+  border: 1px solid rgba(67,233,123,0.25);
+  color: #43e97b;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 600;
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 20px;
+}
+.badge-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #43e97b;
+  box-shadow: 0 0 12px #43e97b;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: 0.4; transform: scale(1.2); } }
+
+h1.title {
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 800; letter-spacing: -1.5px;
+  margin-bottom: 14px; line-height: 1.05;
+}
+.title-gradient {
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle {
+  color: rgba(255,255,255,0.6);
+  font-size: clamp(15px, 2vw, 18px);
+  max-width: 580px; margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ══════════ PRODUCT GRID ══════════ */
+.products {
+  max-width: 1100px; margin: 0 auto;
+  padding: 24px 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 720px) { .products { grid-template-columns: repeat(2, 1fr); } }
+
+.product-card {
+  position: relative;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 22px 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.product-card:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(102,126,234,0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(102,126,234,0.15);
+}
+.product-card.active {
+  background: linear-gradient(135deg, rgba(102,126,234,0.18), rgba(240,147,251,0.18));
+  border-color: rgba(240,147,251,0.5);
+  box-shadow: 0 12px 40px rgba(118,75,162,0.25);
+}
+.product-card.active::after {
+  content: ''; position: absolute; top: 10px; right: 10px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #43e97b; box-shadow: 0 0 10px #43e97b;
+}
+.product-emoji { font-size: 38px; display: block; margin-bottom: 8px; }
+.product-name { font-size: 14px; font-weight: 600; color: #fff; }
+.product-desc { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+
+/* ══════════ FORM AREA ══════════ */
+.cotizador {
+  max-width: 1100px; margin: 0 auto;
+  padding: 24px 24px 80px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 860px) { .cotizador { grid-template-columns: 1fr; } }
+
+.form-panel, .total-panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 28px;
+}
+.panel-title {
+  font-size: 12px; font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.panel-title::before {
+  content: '>'; color: #43e97b; font-weight: 800;
+}
+
+.form-group { margin-bottom: 22px; }
+.form-group:last-child { margin-bottom: 0; }
+.form-label {
+  display: block; font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.8); margin-bottom: 10px;
+}
+
+.option-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.option-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 500;
+  transition: all 0.2s;
+}
+.option-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(102,126,234,0.4);
+  color: #fff;
+}
+.option-btn.selected {
+  background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(240,147,251,0.25));
+  border-color: rgba(240,147,251,0.6);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(118,75,162,0.2);
+}
+
+.dim-inputs { display: flex; gap: 10px; align-items: center; }
+.dim-input {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+.dim-input:focus {
+  outline: none;
+  border-color: rgba(240,147,251,0.6);
+  background: rgba(255,255,255,0.06);
+}
+.dim-input::placeholder { color: rgba(255,255,255,0.3); }
+.dim-sep { color: rgba(255,255,255,0.4); font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255,255,255,0.4);
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+.empty-state p { font-size: 14px; }
+
+/* ══════════ TOTAL PANEL ══════════ */
+.total-panel { position: sticky; top: 90px; }
+
+.total-summary {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  min-height: 80px;
+}
+.total-summary .line {
+  display: flex; justify-content: space-between;
+  padding: 4px 0;
+}
+.total-summary .line span:last-child { color: #fff; font-weight: 500; }
+.total-summary .empty { text-align: center; padding: 12px 0; color: rgba(255,255,255,0.35); }
+
+.total-amount {
+  text-align: center;
+  padding: 24px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(240,147,251,0.15));
+  border: 1px solid rgba(240,147,251,0.25);
+  margin-bottom: 18px;
+}
+.total-label {
+  font-size: 11px; font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.total-value {
+  font-size: 42px; font-weight: 800;
+  background: linear-gradient(135deg, #667eea, #f093fb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.total-currency { font-size: 18px; color: rgba(255,255,255,0.5); margin-left: 4px; }
+
+.btn-wa {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 700; font-size: 15px;
+  border: none; cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+  font-family: 'Inter', sans-serif;
+}
+.btn-wa:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.45); }
+.btn-wa:disabled {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.3);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.btn-wa:disabled:hover { transform: none; }
+
+.btn-reset {
+  display: block; width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  padding: 10px; margin-top: 10px;
+  border-radius: 10px;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.2s;
+}
+.btn-reset:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
+
+.disclaimer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+}
+.disclaimer code {
+  color: #f093fb;
+  background: rgba(240,147,251,0.08);
+  padding: 1px 6px; border-radius: 4px;
+}
+
+/* ══════════ FOOTER ══════════ */
+.footer {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 28px 24px;
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.footer a { color: #f093fb; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ══════════ ANIMATIONS ══════════ */
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-codeate">codeate</span><span class="nav-jd-terminal"><span class="terminal-prompt">&gt;</span>JD</span>
+    </a>
+    <a href="/" class="nav-back">← Volver al sitio</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-badge">
+    <span class="badge-dot"></span>
+    <span>COTIZACIÓN AUTOMÁTICA 24/7</span>
+  </div>
+  <h1 class="title">
+    Cotice su pedido<br>
+    <span class="title-gradient">en segundos</span>
+  </h1>
+  <p class="subtitle">
+    Seleccione el producto, ajuste los detalles y reciba su cotización al instante. Sin esperas, sin llamadas, sin formularios eternos.
+  </p>
+</header>
+
+<!-- PRODUCTS -->
+<div class="products">
+  <div class="product-card" data-product="tarjetas" onclick="selectProduct('tarjetas')">
+    <span class="product-emoji">💳</span>
+    <div class="product-name">Tarjetas</div>
+    <div class="product-desc">desde $15</div>
+  </div>
+  <div class="product-card" data-product="volantes" onclick="selectProduct('volantes')">
+    <span class="product-emoji">📄</span>
+    <div class="product-name">Volantes</div>
+    <div class="product-desc">desde $12</div>
+  </div>
+  <div class="product-card" data-product="gigantografia" onclick="selectProduct('gigantografia')">
+    <span class="product-emoji">🖼️</span>
+    <div class="product-name">Gigantografía</div>
+    <div class="product-desc">desde $8/m²</div>
+  </div>
+  <div class="product-card" data-product="sellos" onclick="selectProduct('sellos')">
+    <span class="product-emoji">🔖</span>
+    <div class="product-name">Sellos</div>
+    <div class="product-desc">desde $8</div>
+  </div>
+</div>
+
+<!-- COTIZADOR -->
+<div class="cotizador">
+
+  <!-- FORM PANEL -->
+  <div class="form-panel">
+    <div class="panel-title">Configurar pedido</div>
+    <div id="formArea">
+      <div class="empty-state">
+        <div class="icon">👆</div>
+        <p>Seleccione un producto arriba para comenzar</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOTAL PANEL -->
+  <div class="total-panel">
+    <div class="panel-title">Resumen</div>
+
+    <div class="total-summary" id="summary">
+      <div class="empty">Aún no hay producto seleccionado</div>
+    </div>
+
+    <div class="total-amount">
+      <div class="total-label">Total estimado</div>
+      <div>
+        <span class="total-value" id="totalValue">$0</span>
+        <span class="total-currency">USD</span>
+      </div>
+    </div>
+
+    <button class="btn-wa" id="btnWa" disabled onclick="enviarWhatsApp()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      <span id="btnWaText">Cotizar por WhatsApp</span>
+    </button>
+
+    <button class="btn-reset" onclick="resetCotizador()">
+      &gt; reiniciar
+    </button>
+
+    <p class="disclaimer">
+      <code>*</code> Precios de ejemplo. En su cotizador<br>
+      se configuran <strong>sus precios reales</strong>.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>
+    Cotizador desarrollado por <a href="/">codeateJD</a> · Soluciones digitales para imprentas
+  </p>
+</footer>
+
+<script>
+// ══════════ DATA & PRICING ══════════
+const WHATSAPP_NUMBER = '584149144103'; // codeateJD
+
+const PRICING = {
+  tarjetas: {
+    name: 'Tarjetas de presentación',
+    emoji: '💳',
+    fields: [
+      {
+        id: 'cantidad', label: 'Cantidad', type: 'options',
+        options: [
+          { v: 250,  l: '250',  base: 15 },
+          { v: 500,  l: '500',  base: 25 },
+          { v: 1000, l: '1.000', base: 40 },
+          { v: 2000, l: '2.000', base: 70 },
+        ]
+      },
+      {
+        id: 'caras', label: 'Caras', type: 'options',
+        options: [
+          { v: '1', l: '1 cara',  mult: 1 },
+          { v: '2', l: '2 caras', mult: 1.30 },
+        ]
+      },
+      {
+        id: 'papel', label: 'Papel', type: 'options',
+        options: [
+          { v: 'mate',      l: 'Mate 300gr',      mult: 1 },
+          { v: 'brillante', l: 'Brillante 300gr', mult: 1.10 },
+          { v: 'premium',   l: 'Premium 350gr',   mult: 1.50 },
+        ]
+      },
+    ]
+  },
+
+  volantes: {
+    name: 'Volantes / Flyers',
+    emoji: '📄',
+    fields: [
+      {
+        id: 'cantidad', label: 'Cantidad', type: 'options',
+        options: [
+          { v: 100,  l: '100',   base: 12 },
+          { v: 250,  l: '250',   base: 22 },
+          { v: 500,  l: '500',   base: 35 },
+          { v: 1000, l: '1.000', base: 60 },
+          { v: 2000, l: '2.000', base: 100 },
+        ]
+      },
+      {
+        id: 'tamano', label: 'Tamaño', type: 'options',
+        options: [
+          { v: 'A6',          l: 'A6 (10×14cm)',     mult: 0.70 },
+          { v: 'A5',          l: 'A5 (14×21cm)',     mult: 1 },
+          { v: 'mediacarta',  l: 'Media carta',      mult: 1.10 },
+        ]
+      },
+      {
+        id: 'color', label: 'Color', type: 'options',
+        options: [
+          { v: 'full', l: 'Full color', mult: 1 },
+          { v: 'bn',   l: 'Blanco y negro', mult: 0.70 },
+        ]
+      },
+      {
+        id: 'caras', label: 'Caras', type: 'options',
+        options: [
+          { v: '1', l: '1 cara',  mult: 1 },
+          { v: '2', l: '2 caras', mult: 1.40 },
+        ]
+      },
+    ]
+  },
+
+  gigantografia: {
+    name: 'Gigantografía',
+    emoji: '🖼️',
+    fields: [
+      {
+        id: 'dimensiones', label: 'Medidas (metros)', type: 'dimensions',
+        defaultLargo: 1, defaultAncho: 1
+      },
+      {
+        id: 'material', label: 'Material', type: 'options',
+        options: [
+          { v: 'banner', l: 'Banner',  pricePerM2: 8 },
+          { v: 'vinil',  l: 'Vinil',   pricePerM2: 10 },
+          { v: 'canvas', l: 'Canvas',  pricePerM2: 14 },
+          { v: 'microp', l: 'Microperforado', pricePerM2: 16 },
+        ]
+      },
+      {
+        id: 'acabado', label: 'Acabado', type: 'options',
+        options: [
+          { v: 'sin',    l: 'Sin terminación',  add: 0 },
+          { v: 'ojales', l: 'Con ojales',       add: 2 },
+          { v: 'doblado', l: 'Doblado + ojales', add: 4 },
+        ]
+      },
+    ]
+  },
+
+  sellos: {
+    name: 'Sellos',
+    emoji: '🔖',
+    fields: [
+      {
+        id: 'tipo', label: 'Tipo', type: 'options',
+        options: [
+          { v: 'madera',     l: 'De madera',     base: { chico: 8,  mediano: 12, grande: 18 } },
+          { v: 'automatico', l: 'Automático',    base: { chico: 18, mediano: 25, grande: 35 } },
+          { v: 'fechador',   l: 'Fechador automático', base: { chico: 28, mediano: 38, grande: 50 } },
+        ]
+      },
+      {
+        id: 'tamano', label: 'Tamaño', type: 'options',
+        options: [
+          { v: 'chico',   l: 'Chico (3×1cm)' },
+          { v: 'mediano', l: 'Mediano (5×2cm)' },
+          { v: 'grande',  l: 'Grande (6×4cm)' },
+        ]
+      },
+      {
+        id: 'cantidad', label: 'Cantidad', type: 'options',
+        options: [
+          { v: 1, l: '1 unidad',  mult: 1 },
+          { v: 2, l: '2 unidades', mult: 1.9 },
+          { v: 3, l: '3 unidades', mult: 2.7 },
+          { v: 5, l: '5 unidades', mult: 4.3 },
+        ]
+      },
+    ]
+  },
+};
+
+// ══════════ STATE ══════════
+let state = {
+  product: null,
+  selections: {},
+};
+
+// ══════════ RENDER ══════════
+function selectProduct(productKey) {
+  state.product = productKey;
+  state.selections = {};
+
+  // Set defaults to first option of each field
+  const cfg = PRICING[productKey];
+  cfg.fields.forEach(field => {
+    if (field.type === 'options' && field.options && field.options.length > 0) {
+      state.selections[field.id] = field.options[0].v;
+    } else if (field.type === 'dimensions') {
+      state.selections.largo = field.defaultLargo || 1;
+      state.selections.ancho = field.defaultAncho || 1;
+    }
+  });
+
+  // Update active card
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
+  document.querySelector(`[data-product="${productKey}"]`).classList.add('active');
+
+  renderForm();
+  recalc();
+}
+
+function renderForm() {
+  const area = document.getElementById('formArea');
+  if (!state.product) {
+    area.innerHTML = '<div class="empty-state"><div class="icon">👆</div><p>Seleccione un producto arriba para comenzar</p></div>';
+    return;
+  }
+
+  const cfg = PRICING[state.product];
+  let html = '';
+
+  cfg.fields.forEach(field => {
+    html += `<div class="form-group fade-in">`;
+    html += `<label class="form-label">${field.label}</label>`;
+
+    if (field.type === 'options') {
+      html += '<div class="option-grid">';
+      field.options.forEach(opt => {
+        const isSel = state.selections[field.id] === opt.v;
+        html += `<button class="option-btn ${isSel ? 'selected' : ''}" onclick="selectOption('${field.id}', ${JSON.stringify(opt.v).replace(/"/g,'&quot;')})">${opt.l}</button>`;
+      });
+      html += '</div>';
+    } else if (field.type === 'dimensions') {
+      html += `
+        <div class="dim-inputs">
+          <input type="number" class="dim-input" id="dim_largo" placeholder="Largo" value="${state.selections.largo || 1}" step="0.5" min="0.1" onchange="updateDimension('largo', this.value)" oninput="updateDimension('largo', this.value)">
+          <span class="dim-sep">×</span>
+          <input type="number" class="dim-input" id="dim_ancho" placeholder="Ancho" value="${state.selections.ancho || 1}" step="0.5" min="0.1" onchange="updateDimension('ancho', this.value)" oninput="updateDimension('ancho', this.value)">
+          <span class="dim-sep">m</span>
+        </div>
+      `;
+    }
+
+    html += '</div>';
+  });
+
+  area.innerHTML = html;
+}
+
+function selectOption(fieldId, value) {
+  state.selections[fieldId] = value;
+  renderForm();
+  recalc();
+}
+
+function updateDimension(dim, value) {
+  const num = parseFloat(value);
+  if (isNaN(num) || num <= 0) return;
+  state.selections[dim] = num;
+  recalc();
+}
+
+// ══════════ CALCULATE ══════════
+function recalc() {
+  if (!state.product) {
+    document.getElementById('totalValue').textContent = '$0';
+    document.getElementById('summary').innerHTML = '<div class="empty">Aún no hay producto seleccionado</div>';
+    document.getElementById('btnWa').disabled = true;
+    return;
+  }
+
+  const cfg = PRICING[state.product];
+  let total = 0;
+  let lines = [];
+  lines.push({ label: 'Producto', value: cfg.name });
+
+  if (state.product === 'tarjetas') {
+    const cant = cfg.fields[0].options.find(o => o.v == state.selections.cantidad);
+    const caras = cfg.fields[1].options.find(o => o.v === state.selections.caras);
+    const papel = cfg.fields[2].options.find(o => o.v === state.selections.papel);
+    total = cant.base * caras.mult * papel.mult;
+    lines.push({ label: 'Cantidad', value: cant.l + ' u' });
+    lines.push({ label: 'Caras', value: caras.l });
+    lines.push({ label: 'Papel', value: papel.l });
+  }
+
+  if (state.product === 'volantes') {
+    const cant = cfg.fields[0].options.find(o => o.v == state.selections.cantidad);
+    const tam = cfg.fields[1].options.find(o => o.v === state.selections.tamano);
+    const color = cfg.fields[2].options.find(o => o.v === state.selections.color);
+    const caras = cfg.fields[3].options.find(o => o.v === state.selections.caras);
+    total = cant.base * tam.mult * color.mult * caras.mult;
+    lines.push({ label: 'Cantidad', value: cant.l + ' u' });
+    lines.push({ label: 'Tamaño', value: tam.l });
+    lines.push({ label: 'Color', value: color.l });
+    lines.push({ label: 'Caras', value: caras.l });
+  }
+
+  if (state.product === 'gigantografia') {
+    const largo = state.selections.largo || 1;
+    const ancho = state.selections.ancho || 1;
+    const m2 = largo * ancho;
+    const mat = cfg.fields[1].options.find(o => o.v === state.selections.material);
+    const acab = cfg.fields[2].options.find(o => o.v === state.selections.acabado);
+    total = m2 * (mat.pricePerM2 + acab.add);
+    lines.push({ label: 'Medidas', value: `${largo}×${ancho} m (${m2.toFixed(2)}m²)` });
+    lines.push({ label: 'Material', value: mat.l });
+    lines.push({ label: 'Acabado', value: acab.l });
+  }
+
+  if (state.product === 'sellos') {
+    const tipo = cfg.fields[0].options.find(o => o.v === state.selections.tipo);
+    const tam = state.selections.tamano;
+    const cant = cfg.fields[2].options.find(o => o.v == state.selections.cantidad);
+    const tamLabel = cfg.fields[1].options.find(o => o.v === tam).l;
+    total = tipo.base[tam] * cant.mult;
+    lines.push({ label: 'Tipo', value: tipo.l });
+    lines.push({ label: 'Tamaño', value: tamLabel });
+    lines.push({ label: 'Cantidad', value: cant.l });
+  }
+
+  // Render summary
+  const summaryHtml = lines.map(l => `<div class="line"><span>${l.label}</span><span>${l.value}</span></div>`).join('');
+  document.getElementById('summary').innerHTML = summaryHtml;
+
+  // Format total
+  const formatted = total >= 100 ? Math.round(total) : total.toFixed(2);
+  document.getElementById('totalValue').textContent = '$' + formatted;
+  document.getElementById('btnWa').disabled = false;
+
+  // Save for WA
+  state.total = formatted;
+  state.lines = lines;
+}
+
+// ══════════ WHATSAPP ══════════
+function enviarWhatsApp() {
+  if (!state.product || !state.lines) return;
+  const cfg = PRICING[state.product];
+
+  let msg = `Hola! Quisiera cotizar este pedido:%0A%0A`;
+  msg += `${cfg.emoji} *${cfg.name}*%0A`;
+  state.lines.slice(1).forEach(l => {
+    msg += `• ${l.label}: ${l.value}%0A`;
+  });
+  msg += `%0A💰 *Total estimado: $${state.total} USD*%0A%0A`;
+  msg += `Cotización generada desde codeatejd.com/cotizador-imprenta`;
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  window.open(url, '_blank');
+}
+
+// ══════════ RESET ══════════
+function resetCotizador() {
+  state.product = null;
+  state.selections = {};
+  document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
+  renderForm();
+  recalc();
+}
+
+// Initial render
+renderForm();
+recalc();
+</script>
+
+</body>
+</html>
