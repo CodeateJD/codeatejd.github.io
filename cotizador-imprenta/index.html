@@ -7,30 +7,25 @@
 <meta name="description" content="Cotice tarjetas, volantes, gigantografías y sellos en segundos. Cotizador automático de imprenta por codeateJD.">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', -apple-system, sans-serif;
-  background: #0a0a0f;
-  color: #fff;
+  background: #F5F7FA;
+  color: #111827;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  background-image:
-    radial-gradient(circle at 20% 10%, rgba(102,126,234,0.15), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(240,147,251,0.12), transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(118,75,162,0.08), transparent 60%);
 }
 
 /* ══════════ NAV ══════════ */
 .nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(10,10,15,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
   padding: 14px 0;
 }
 .nav-inner {
@@ -38,324 +33,281 @@ body {
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 20px; font-weight: 500;
-  text-decoration: none; letter-spacing: -0.5px;
+  font-size: 18px; font-weight: 700;
+  text-decoration: none; letter-spacing: -0.3px;
+  color: #111827;
   display: inline-flex; align-items: center;
 }
-.nav-codeate {
-  background: linear-gradient(90deg, #f093fb, #f5576c, #ffd200, #4facfe, #43e97b, #667eea);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: colorShift 6s ease-in-out infinite;
-  font-weight: 500;
-}
-.nav-jd-terminal {
-  background: #111; color: #fff;
-  font-weight: 800; padding: 2px 8px 3px;
-  border-radius: 6px; margin-left: 3px; font-size: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-}
-.terminal-prompt { color: #43e97b; margin-right: 2px; }
-@keyframes colorShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
+.nav-codeate { color: #111827; font-weight: 500; }
+.nav-jd { color: #2563EB; font-weight: 800; margin-left: 2px; }
+.nav-divider { color: #D1D5DB; margin: 0 12px; font-weight: 300; }
+.nav-product { color: #6B7280; font-size: 14px; font-weight: 500; }
 .nav-back {
-  color: rgba(255,255,255,0.6); text-decoration: none;
-  font-size: 13px; font-weight: 500;
+  color: #6B7280; text-decoration: none;
+  font-size: 14px; font-weight: 500;
   display: inline-flex; align-items: center; gap: 6px;
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
-.nav-back:hover { color: #fff; }
+.nav-back:hover { color: #2563EB; }
 
 /* ══════════ HEADER ══════════ */
 .header {
   max-width: 1100px; margin: 0 auto;
-  padding: 64px 24px 32px;
+  padding: 56px 24px 32px;
   text-align: center;
 }
 .header-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(67,233,123,0.08);
-  border: 1px solid rgba(67,233,123,0.25);
-  color: #43e97b;
-  font-family: 'JetBrains Mono', monospace;
+  background: #DCFCE7;
+  border: 1px solid #86EFAC;
+  color: #166534;
   font-size: 12px; font-weight: 600;
-  padding: 6px 14px; border-radius: 999px;
+  padding: 5px 14px; border-radius: 999px;
   margin-bottom: 20px;
+  letter-spacing: 0.3px;
 }
 .badge-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #43e97b;
-  box-shadow: 0 0 12px #43e97b;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #16A34A;
   animation: pulse 2s ease-in-out infinite;
 }
-@keyframes pulse { 50% { opacity: 0.4; transform: scale(1.2); } }
+@keyframes pulse { 50% { opacity: 0.5; } }
 
 h1.title {
-  font-size: clamp(32px, 6vw, 52px);
-  font-weight: 800; letter-spacing: -1.5px;
-  margin-bottom: 14px; line-height: 1.05;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 800; letter-spacing: -1px;
+  margin-bottom: 14px; line-height: 1.1;
+  color: #111827;
 }
-.title-gradient {
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.title-accent { color: #2563EB; }
 .subtitle {
-  color: rgba(255,255,255,0.6);
-  font-size: clamp(15px, 2vw, 18px);
-  max-width: 580px; margin: 0 auto;
+  color: #6B7280;
+  font-size: clamp(15px, 1.6vw, 17px);
+  max-width: 560px; margin: 0 auto;
   line-height: 1.5;
 }
 
 /* ══════════ PRODUCT GRID ══════════ */
 .products {
   max-width: 1100px; margin: 0 auto;
-  padding: 24px 24px;
+  padding: 24px 24px 8px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 12px;
 }
 @media (max-width: 720px) { .products { grid-template-columns: repeat(2, 1fr); } }
 
 .product-card {
   position: relative;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 18px;
-  padding: 22px 16px;
+  background: #FFFFFF;
+  border: 2px solid #E5E7EB;
+  border-radius: 14px;
+  padding: 20px 16px;
   cursor: pointer;
   text-align: center;
-  transition: all 0.3s;
-  overflow: hidden;
+  transition: border-color 0.15s, transform 0.15s;
 }
 .product-card:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(102,126,234,0.4);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(102,126,234,0.15);
+  border-color: #93C5FD;
+  transform: translateY(-2px);
 }
 .product-card.active {
-  background: linear-gradient(135deg, rgba(102,126,234,0.18), rgba(240,147,251,0.18));
-  border-color: rgba(240,147,251,0.5);
-  box-shadow: 0 12px 40px rgba(118,75,162,0.25);
+  border-color: #2563EB;
+  background: #EFF6FF;
 }
 .product-card.active::after {
   content: ''; position: absolute; top: 10px; right: 10px;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #43e97b; box-shadow: 0 0 10px #43e97b;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #2563EB;
 }
-.product-emoji { font-size: 38px; display: block; margin-bottom: 8px; }
-.product-name { font-size: 14px; font-weight: 600; color: #fff; }
-.product-desc { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
+.product-emoji { font-size: 36px; display: block; margin-bottom: 6px; }
+.product-name { font-size: 14px; font-weight: 600; color: #111827; }
+.product-desc { font-size: 11px; color: #6B7280; margin-top: 2px; font-weight: 500; }
 
 /* ══════════ FORM AREA ══════════ */
 .cotizador {
   max-width: 1100px; margin: 0 auto;
-  padding: 24px 24px 80px;
+  padding: 16px 24px 80px;
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 24px;
+  gap: 20px;
   align-items: start;
 }
 @media (max-width: 860px) { .cotizador { grid-template-columns: 1fr; } }
 
 .form-panel, .total-panel {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 22px;
-  padding: 28px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 16px;
+  padding: 26px;
 }
 .panel-title {
-  font-size: 12px; font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
-  color: rgba(255,255,255,0.5);
-  text-transform: uppercase; letter-spacing: 1.5px;
-  margin-bottom: 16px;
-  display: flex; align-items: center; gap: 8px;
-}
-.panel-title::before {
-  content: '>'; color: #43e97b; font-weight: 800;
+  font-size: 11px; font-weight: 700;
+  color: #6B7280;
+  text-transform: uppercase; letter-spacing: 1.2px;
+  margin-bottom: 18px;
 }
 
 .form-group { margin-bottom: 22px; }
 .form-group:last-child { margin-bottom: 0; }
 .form-label {
   display: block; font-size: 13px; font-weight: 600;
-  color: rgba(255,255,255,0.8); margin-bottom: 10px;
+  color: #374151; margin-bottom: 10px;
 }
 
 .option-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 .option-btn {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
-  padding: 10px 16px;
-  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1.5px solid #E5E7EB;
+  color: #4B5563;
+  padding: 9px 16px;
+  border-radius: 8px;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-size: 13px; font-weight: 500;
-  transition: all 0.2s;
+  transition: all 0.15s;
 }
 .option-btn:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(102,126,234,0.4);
-  color: #fff;
+  border-color: #93C5FD;
+  color: #1F2937;
 }
 .option-btn.selected {
-  background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(240,147,251,0.25));
-  border-color: rgba(240,147,251,0.6);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(118,75,162,0.2);
+  background: #2563EB;
+  border-color: #2563EB;
+  color: #FFFFFF;
+  font-weight: 600;
 }
 
 .dim-inputs { display: flex; gap: 10px; align-items: center; }
 .dim-input {
   flex: 1;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: #fff;
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-family: 'JetBrains Mono', monospace;
+  background: #FFFFFF;
+  border: 1.5px solid #E5E7EB;
+  color: #111827;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
+  font-weight: 500;
 }
 .dim-input:focus {
   outline: none;
-  border-color: rgba(240,147,251,0.6);
-  background: rgba(255,255,255,0.06);
+  border-color: #2563EB;
 }
-.dim-input::placeholder { color: rgba(255,255,255,0.3); }
-.dim-sep { color: rgba(255,255,255,0.4); font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+.dim-input::placeholder { color: #9CA3AF; }
+.dim-sep { color: #9CA3AF; font-weight: 500; font-size: 14px; }
 
 .empty-state {
   text-align: center;
-  padding: 60px 20px;
-  color: rgba(255,255,255,0.4);
+  padding: 50px 20px;
+  color: #9CA3AF;
 }
-.empty-state .icon { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+.empty-state .icon { font-size: 44px; margin-bottom: 10px; }
 .empty-state p { font-size: 14px; }
 
 /* ══════════ TOTAL PANEL ══════════ */
-.total-panel { position: sticky; top: 90px; }
+.total-panel { position: sticky; top: 88px; }
 
 .total-summary {
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
-  padding: 18px;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 16px;
   margin-bottom: 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  min-height: 80px;
+  font-size: 13px;
+  color: #6B7280;
+  min-height: 70px;
 }
 .total-summary .line {
   display: flex; justify-content: space-between;
   padding: 4px 0;
 }
-.total-summary .line span:last-child { color: #fff; font-weight: 500; }
-.total-summary .empty { text-align: center; padding: 12px 0; color: rgba(255,255,255,0.35); }
+.total-summary .line span:last-child { color: #111827; font-weight: 600; }
+.total-summary .empty { text-align: center; padding: 12px 0; color: #9CA3AF; }
 
 .total-amount {
   text-align: center;
-  padding: 24px 16px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(102,126,234,0.15), rgba(240,147,251,0.15));
-  border: 1px solid rgba(240,147,251,0.25);
-  margin-bottom: 18px;
+  padding: 22px 16px;
+  border-radius: 12px;
+  background: #F97316;
+  color: #FFFFFF;
+  margin-bottom: 16px;
 }
 .total-label {
-  font-size: 11px; font-weight: 600;
-  font-family: 'JetBrains Mono', monospace;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 1.5px; text-transform: uppercase;
-  margin-bottom: 6px;
+  font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 1.4px; text-transform: uppercase;
+  margin-bottom: 4px;
 }
 .total-value {
-  font-size: 42px; font-weight: 800;
-  background: linear-gradient(135deg, #667eea, #f093fb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 40px; font-weight: 800;
+  color: #FFFFFF;
   letter-spacing: -1px;
   line-height: 1;
 }
-.total-currency { font-size: 18px; color: rgba(255,255,255,0.5); margin-left: 4px; }
+.total-currency { font-size: 17px; color: rgba(255,255,255,0.85); margin-left: 4px; font-weight: 600; }
 
 .btn-wa {
   display: flex; align-items: center; justify-content: center; gap: 10px;
   width: 100%;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: #fff;
+  background: #25D366;
+  color: #FFFFFF;
   text-decoration: none;
-  padding: 16px;
-  border-radius: 14px;
+  padding: 15px;
+  border-radius: 12px;
   font-weight: 700; font-size: 15px;
   border: none; cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+  transition: background 0.15s;
   font-family: 'Inter', sans-serif;
 }
-.btn-wa:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.45); }
+.btn-wa:hover { background: #1FB855; }
 .btn-wa:disabled {
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.3);
-  box-shadow: none;
+  background: #E5E7EB;
+  color: #9CA3AF;
   cursor: not-allowed;
 }
-.btn-wa:disabled:hover { transform: none; }
+.btn-wa:disabled:hover { background: #E5E7EB; }
 
 .btn-reset {
   display: block; width: 100%;
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.5);
+  border: 1px solid #E5E7EB;
+  color: #6B7280;
   padding: 10px; margin-top: 10px;
-  border-radius: 10px;
-  font-size: 12px; font-weight: 500; cursor: pointer;
-  font-family: 'JetBrains Mono', monospace;
-  transition: all 0.2s;
+  border-radius: 8px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
 }
-.btn-reset:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
+.btn-reset:hover { border-color: #9CA3AF; color: #111827; }
 
 .disclaimer {
-  margin-top: 20px;
+  margin-top: 18px;
   text-align: center;
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #6B7280;
   line-height: 1.5;
 }
-.disclaimer code {
-  color: #f093fb;
-  background: rgba(240,147,251,0.08);
-  padding: 1px 6px; border-radius: 4px;
-}
+.disclaimer strong { color: #111827; }
 
 /* ══════════ FOOTER ══════════ */
 .footer {
-  border-top: 1px solid rgba(255,255,255,0.05);
-  padding: 28px 24px;
+  border-top: 1px solid #E5E7EB;
+  background: #FFFFFF;
+  padding: 24px;
   text-align: center;
-  color: rgba(255,255,255,0.4);
-  font-size: 12px;
-  font-family: 'JetBrains Mono', monospace;
+  color: #6B7280;
+  font-size: 13px;
 }
-.footer a { color: #f093fb; text-decoration: none; }
+.footer a { color: #2563EB; text-decoration: none; font-weight: 500; }
 .footer a:hover { text-decoration: underline; }
 
 /* ══════════ ANIMATIONS ══════════ */
 .fade-in {
-  animation: fadeIn 0.4s ease-out;
+  animation: fadeIn 0.3s ease-out;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 </style>
@@ -367,9 +319,11 @@ h1.title {
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <span class="nav-codeate">codeate</span><span class="nav-jd-terminal"><span class="terminal-prompt">&gt;</span>JD</span>
+      <span class="nav-codeate">codeate</span><span class="nav-jd">JD</span>
+      <span class="nav-divider">/</span>
+      <span class="nav-product">Cotizador Imprenta</span>
     </a>
-    <a href="/" class="nav-back">← Volver al sitio</a>
+    <a href="/" class="nav-back">← Volver</a>
   </div>
 </nav>
 
@@ -381,7 +335,7 @@ h1.title {
   </div>
   <h1 class="title">
     Cotice su pedido<br>
-    <span class="title-gradient">en segundos</span>
+    <span class="title-accent">en segundos</span>
   </h1>
   <p class="subtitle">
     Seleccione el producto, ajuste los detalles y reciba su cotización al instante. Sin esperas, sin llamadas, sin formularios eternos.
@@ -450,12 +404,11 @@ h1.title {
     </button>
 
     <button class="btn-reset" onclick="resetCotizador()">
-      &gt; reiniciar
+      Reiniciar
     </button>
 
     <p class="disclaimer">
-      <code>*</code> Precios de ejemplo. En su cotizador<br>
-      se configuran <strong>sus precios reales</strong>.
+      * Precios de ejemplo. En su cotizador se configuran <strong>sus precios reales</strong>.
     </p>
   </div>
 </div>
@@ -479,8 +432,8 @@ const PRICING = {
       {
         id: 'cantidad', label: 'Cantidad', type: 'options',
         options: [
-          { v: 250,  l: '250',  base: 15 },
-          { v: 500,  l: '500',  base: 25 },
+          { v: 250,  l: '250',   base: 15 },
+          { v: 500,  l: '500',   base: 25 },
           { v: 1000, l: '1.000', base: 40 },
           { v: 2000, l: '2.000', base: 70 },
         ]
@@ -614,7 +567,6 @@ function selectProduct(productKey) {
   state.product = productKey;
   state.selections = {};
 
-  // Set defaults to first option of each field
   const cfg = PRICING[productKey];
   cfg.fields.forEach(field => {
     if (field.type === 'options' && field.options && field.options.length > 0) {
@@ -625,7 +577,6 @@ function selectProduct(productKey) {
     }
   });
 
-  // Update active card
   document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
   document.querySelector(`[data-product="${productKey}"]`).classList.add('active');
 
@@ -743,16 +694,13 @@ function recalc() {
     lines.push({ label: 'Cantidad', value: cant.l });
   }
 
-  // Render summary
   const summaryHtml = lines.map(l => `<div class="line"><span>${l.label}</span><span>${l.value}</span></div>`).join('');
   document.getElementById('summary').innerHTML = summaryHtml;
 
-  // Format total
   const formatted = total >= 100 ? Math.round(total) : total.toFixed(2);
   document.getElementById('totalValue').textContent = '$' + formatted;
   document.getElementById('btnWa').disabled = false;
 
-  // Save for WA
   state.total = formatted;
   state.lines = lines;
 }
@@ -783,7 +731,6 @@ function resetCotizador() {
   recalc();
 }
 
-// Initial render
 renderForm();
 recalc();
 </script>
