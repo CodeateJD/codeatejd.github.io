@@ -185,49 +185,137 @@ body {
 
 /* ══════════ SOLUTION SECTION ══════════ */
 .solution-flow {
-  background: #F9FAFB;
+  background: #FFFFFF;
   border: 1px solid #E5E7EB;
-  border-radius: 18px;
-  padding: 40px;
+  border-radius: 22px;
+  padding: 56px 30px 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  align-items: center;
+  gap: 0;
   position: relative;
 }
-@media (max-width: 800px) { .solution-flow { grid-template-columns: 1fr; padding: 28px; } }
+.solution-flow::before {
+  content: '';
+  position: absolute;
+  top: 110px;
+  left: 14%; right: 14%;
+  border-top: 2px dashed #E5E7EB;
+  z-index: 0;
+}
+@media (max-width: 800px) {
+  .solution-flow { grid-template-columns: 1fr; padding: 30px 20px; gap: 28px; }
+  .solution-flow::before {
+    top: 60px; bottom: 60px;
+    left: 50%; right: auto;
+    width: 0;
+    border-top: none;
+    border-left: 2px dashed #E5E7EB;
+  }
+}
 
 .flow-step {
   text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.flow-step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.flow-number {
+  font-size: 11px;
+  font-weight: 800;
+  color: #2563EB;
+  letter-spacing: 2.5px;
+  margin-bottom: 14px;
+  font-family: 'Inter', sans-serif;
 }
 .flow-icon {
-  width: 56px; height: 56px;
-  background: #2563EB;
-  border-radius: 14px;
+  width: 72px; height: 72px;
+  background: #FFFFFF;
+  border: 2px solid #DBEAFE;
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
-  color: #FFFFFF;
-  margin: 0 auto 12px;
+  color: #2563EB;
+  margin: 0 auto 20px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow: 0 0 0 6px #FFFFFF;
+  position: relative;
 }
-.flow-step:nth-child(3) .flow-icon { background: #F97316; }
-.flow-step:nth-child(5) .flow-icon { background: #25D366; }
-.flow-step:nth-child(7) .flow-icon { background: #16A34A; }
-
+.flow-step:hover .flow-icon {
+  border-color: #2563EB;
+  transform: scale(1.05);
+}
+.flow-step.active .flow-icon {
+  background: #2563EB;
+  border-color: #2563EB;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 6px #FFFFFF, 0 0 0 12px rgba(37,99,235,0.12), 0 10px 30px rgba(37,99,235,0.35);
+  transform: scale(1.08);
+}
+.flow-step.active .flow-number { color: #1E40AF; }
 .flow-step h4 {
-  font-size: 14px; font-weight: 700;
-  color: #111827; margin-bottom: 4px;
+  font-size: 15px; font-weight: 700;
+  color: #111827; margin-bottom: 6px;
+  letter-spacing: -0.2px;
 }
 .flow-step p {
-  font-size: 12px; color: #6B7280;
+  font-size: 13px;
+  color: #6B7280;
+  line-height: 1.5;
 }
-.flow-arrow {
-  text-align: center;
-  color: #D1D5DB;
-  font-size: 24px;
-  font-weight: 300;
+
+/* Icon-specific micro-animations on active */
+.flow-step.active .icon-globe { animation: spin 4s linear infinite; }
+.flow-step.active .icon-calc-dot {
+  animation: blink 0.6s ease-in-out infinite alternate;
+}
+.flow-step.active .icon-msg-dots circle {
+  animation: bounce 0.8s ease-in-out infinite;
+}
+.flow-step.active .icon-msg-dots circle:nth-child(2) { animation-delay: 0.15s; }
+.flow-step.active .icon-msg-dots circle:nth-child(3) { animation-delay: 0.3s; }
+.flow-step.active .icon-check-path {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 0;
+  animation: drawCheck 0.7s ease-out;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes blink { from { opacity: 0.3; } to { opacity: 1; } }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes drawCheck {
+  from { stroke-dashoffset: 50; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Traveling pulse on connector */
+.flow-pulse {
+  position: absolute;
+  top: 104px;
+  left: 14%;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #2563EB;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.18), 0 0 18px rgba(37,99,235,0.5);
+  animation: travel 6s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+@keyframes travel {
+  0%   { left: 14%; opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { left: 86%; opacity: 0; }
 }
 @media (max-width: 800px) {
-  .flow-arrow { transform: rotate(90deg); }
+  .flow-pulse { display: none; }
 }
 
 /* ══════════ DEMO HIGHLIGHT ══════════ */
@@ -615,27 +703,67 @@ body {
       </p>
     </div>
 
-    <div class="solution-flow">
-      <div class="flow-step">
-        <div class="flow-icon">🌐</div>
+    <div class="solution-flow" id="solutionFlow">
+      <div class="flow-pulse"></div>
+
+      <div class="flow-step" data-step="0">
+        <div class="flow-number">01</div>
+        <div class="flow-icon">
+          <svg class="icon-globe" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+            <path d="M2 12h20"/>
+          </svg>
+        </div>
         <h4>Cliente entra</h4>
         <p>Encuentra su web en Google</p>
       </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="flow-icon">🧮</div>
+
+      <div class="flow-step" data-step="1">
+        <div class="flow-number">02</div>
+        <div class="flow-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <line x1="8" y1="6" x2="16" y2="6"/>
+            <circle class="icon-calc-dot" cx="8" cy="11" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="12" cy="11" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="16" cy="11" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="8" cy="15" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="12" cy="15" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="16" cy="15" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="8" cy="19" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="12" cy="19" r="0.8" fill="currentColor"/>
+            <circle class="icon-calc-dot" cx="16" cy="19" r="0.8" fill="currentColor"/>
+          </svg>
+        </div>
         <h4>Cotiza solo</h4>
         <p>Elige producto y cantidad</p>
       </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="flow-icon">💬</div>
+
+      <div class="flow-step" data-step="2">
+        <div class="flow-number">03</div>
+        <div class="flow-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <g class="icon-msg-dots">
+              <circle cx="8" cy="11" r="1" fill="currentColor"/>
+              <circle cx="12" cy="11" r="1" fill="currentColor"/>
+              <circle cx="16" cy="11" r="1" fill="currentColor"/>
+            </g>
+          </svg>
+        </div>
         <h4>Envía pedido</h4>
         <p>Llega a su WhatsApp armado</p>
       </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="flow-icon">✅</div>
+
+      <div class="flow-step" data-step="3">
+        <div class="flow-number">04</div>
+        <div class="flow-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline class="icon-check-path" points="8 12 11 15 16 9"/>
+          </svg>
+        </div>
         <h4>Usted imprime</h4>
         <p>Solo confirma y produce</p>
       </div>
@@ -874,6 +1002,54 @@ body {
     Propuesta preparada por <a href="/">codeateJD</a> · Soluciones digitales a medida · Caracas, Venezuela
   </p>
 </footer>
+
+<script>
+(function() {
+  const flow = document.getElementById('solutionFlow');
+  if (!flow) return;
+  const steps = flow.querySelectorAll('.flow-step');
+  let cycleInterval = null;
+  let activeIdx = 0;
+
+  // Stagger reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        steps.forEach((step, i) => {
+          setTimeout(() => step.classList.add('visible'), i * 140);
+        });
+        // Start the active cycle after reveal completes
+        setTimeout(startCycle, steps.length * 140 + 400);
+        observer.unobserve(flow);
+      }
+    });
+  }, { threshold: 0.25 });
+  observer.observe(flow);
+
+  function startCycle() {
+    if (cycleInterval) return;
+    setActive(0);
+    cycleInterval = setInterval(() => {
+      activeIdx = (activeIdx + 1) % steps.length;
+      setActive(activeIdx);
+    }, 1500);
+  }
+
+  function setActive(idx) {
+    steps.forEach((s, i) => s.classList.toggle('active', i === idx));
+  }
+
+  // Pause cycle when tab is hidden (saves CPU)
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && cycleInterval) {
+      clearInterval(cycleInterval);
+      cycleInterval = null;
+    } else if (!document.hidden && flow.querySelector('.flow-step.visible')) {
+      startCycle();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
